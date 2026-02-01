@@ -12,15 +12,62 @@
     <meta property="og:description" content="DJ, artiste rap et Chief AI Officer basé à Genève. Musique, tech et streaming.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ludovicmarie.netlify.app/">
-    <meta property="og:image" content="https://ludovicmarie.netlify.app/assets/images/headshot.jpeg">
+    <meta property="og:image" content="https://ludovicmarie.netlify.app/assets/images/headshot.webp">
     <meta property="og:locale" content="fr_CH">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Ludovic — DJ · Artiste · Chief AI Officer">
     <meta name="twitter:description" content="DJ, artiste rap et Chief AI Officer basé à Genève.">
-    <meta name="twitter:image" content="https://ludovicmarie.netlify.app/assets/images/headshot.jpeg">
+    <meta name="twitter:image" content="https://ludovicmarie.netlify.app/assets/images/headshot.webp">
     <!-- Theme Color -->
     <meta name="theme-color" content="#0a0a0a">
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Person",
+                "@id": "https://ludovicmarie.netlify.app/#person",
+                "name": "Ludovic",
+                "url": "https://ludovicmarie.netlify.app/",
+                "image": "https://ludovicmarie.netlify.app/assets/images/headshot.webp",
+                "description": "DJ, artiste rap et Chief AI Officer basé à Genève",
+                "jobTitle": ["DJ", "Artiste", "Chief AI Officer"],
+                "worksFor": {
+                    "@type": "Organization",
+                    "name": "Goeko",
+                    "url": "https://goeko.ch"
+                },
+                "sameAs": [
+                    "https://www.instagram.com/lu4ovic",
+                    "https://x.com/lu4ovic",
+                    "https://www.tiktok.com/@lu4ovic",
+                    "https://open.spotify.com/artist/2G6ALmQ9WNsaqP0QsJFTJ8",
+                    "https://music.apple.com/ch/artist/ludovic/1854313232"
+                ]
+            },
+            {
+                "@type": "MusicGroup",
+                "@id": "https://ludovicmarie.netlify.app/#artist",
+                "name": "Ludovic",
+                "genre": ["Rap", "Hip-Hop"],
+                "url": "https://ludovicmarie.netlify.app/",
+                "image": "https://ludovicmarie.netlify.app/assets/images/headshot.webp",
+                "sameAs": [
+                    "https://open.spotify.com/artist/2G6ALmQ9WNsaqP0QsJFTJ8",
+                    "https://music.apple.com/ch/artist/ludovic/1854313232"
+                ]
+            },
+            {
+                "@type": "WebSite",
+                "name": "Ludovic Portfolio",
+                "url": "https://ludovicmarie.netlify.app/",
+                "author": {"@id": "https://ludovicmarie.netlify.app/#person"}
+            }
+        ]
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -135,7 +182,7 @@
             <div class="hero-visual">
                 <div class="headshot-container">
                     <div class="headshot-frame">
-                        <img src="assets/images/headshot.jpeg" alt="Ludovic" class="headshot-img">
+                        <img src="assets/images/headshot.webp" alt="Ludovic" class="headshot-img">
                         <div class="headshot-border"></div>
                     </div>
                     <div class="floating-badge badge-1">
@@ -163,7 +210,7 @@
                     <div class="visual-card dj-card">
                         <div class="card-glow"></div>
                         <div class="dj-image-wrapper">
-                            <img src="assets/images/djing_picture_1.jpg" alt="Ludovic DJ" class="dj-image" loading="lazy">
+                            <img src="assets/images/djing_picture_1.webp" alt="Ludovic DJ" class="dj-image" loading="lazy">
                             <div class="dj-overlay">
                                 <div class="equalizer">
                                     <span></span><span></span><span></span><span></span><span></span>
@@ -244,7 +291,7 @@
                         <h3 class="subsection-title" data-i18n="musicDiscoTitle">Discographie</h3>
                         <div class="release-card">
                             <div class="release-artwork">
-                                <img src="assets/images/LOADING_Single_cover.JPG" alt="LOADING - Single Cover" class="release-cover" loading="lazy">
+                                <img src="assets/images/LOADING_Single_cover.webp" alt="LOADING - Single Cover" class="release-cover" loading="lazy">
                             </div>
                             <div class="release-info">
                                 <span class="release-type" data-i18n="musicReleaseType">Premier single</span>
@@ -378,7 +425,7 @@
                     <div class="visual-card stream-card">
                         <div class="card-glow"></div>
                         <div class="clapegrint-logo-wrapper">
-                            <img src="assets/images/clapegrint_logo.png" alt="Clapegrint" class="clapegrint-logo" loading="lazy">
+                            <img src="assets/images/clapegrint_logo.webp" alt="Clapegrint" class="clapegrint-logo" loading="lazy">
                         </div>
                         <div class="stream-stats">
                             <div class="stat">
@@ -408,17 +455,17 @@
 
                     <div class="social-links">
                         <a href="https://kick.com/clapegrint" target="_blank" rel="noopener" class="social-btn magnetic kick-btn">
-                            <img src="assets/images/Icon.jpeg" alt="Kick" class="btn-icon-img">
+                            <img src="assets/images/Icon.webp" alt="Kick" class="btn-icon-img">
                             <span class="btn-label">Kick</span>
                             <span class="btn-sublabel" data-i18n="streamLives">Lives réguliers</span>
                         </a>
                         <a href="https://www.instagram.com/clapegrint" target="_blank" rel="noopener" class="social-btn magnetic instagram-btn">
-                            <img src="assets/images/Instagram_icon.png.webp" alt="Instagram" class="btn-icon-img">
+                            <img src="assets/images/Instagram_icon.webp" alt="Instagram" class="btn-icon-img">
                             <span class="btn-label">Instagram</span>
                             <span class="btn-sublabel" data-i18n="streamBehind">Behind the scenes</span>
                         </a>
                         <a href="https://www.tiktok.com/@clapegrint" target="_blank" rel="noopener" class="social-btn magnetic tiktok-btn">
-                            <img src="assets/images/tiktok_logo.png" alt="TikTok" class="btn-icon-img">
+                            <img src="assets/images/tiktok_logo.webp" alt="TikTok" class="btn-icon-img">
                             <span class="btn-label">TikTok</span>
                             <span class="btn-sublabel" data-i18n="streamClips">Clips et moments forts</span>
                         </a>
@@ -436,7 +483,7 @@
             <div class="social-grid">
                 <a href="https://www.instagram.com/lu4ovic" target="_blank" rel="noopener" class="social-tile magnetic instagram-tile">
                     <div class="tile-content">
-                        <img src="assets/images/Instagram_icon.png.webp" alt="Instagram" class="tile-icon-img">
+                        <img src="assets/images/Instagram_icon.webp" alt="Instagram" class="tile-icon-img">
                         <span class="tile-name">Instagram</span>
                         <span class="tile-handle">@lu4ovic</span>
                     </div>
@@ -471,17 +518,41 @@
                 <p class="contact-intro" data-i18n="contactIntro">
                     Pour toute demande professionnelle
                 </p>
-                <div class="contact-types">
-                    <span class="contact-type" data-i18n="contactType1">Booking DJ</span>
-                    <span class="contact-type" data-i18n="contactType2">Collaborations musicales</span>
-                    <span class="contact-type" data-i18n="contactType3">Projets tech & IA</span>
-                    <span class="contact-type" data-i18n="contactType4">Partenariats streaming</span>
-                </div>
-                <a href="mailto:lmariecontact@proton.me" class="email-link magnetic">
-                    <span class="email-icon">📧</span>
-                    <span class="email-text">lmariecontact@proton.me</span>
-                    <span class="email-arrow">→</span>
-                </a>
+                <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form">
+                    <input type="hidden" name="form-name" value="contact">
+                    <p class="hidden" style="display:none;">
+                        <label>Don't fill this out: <input name="bot-field"></label>
+                    </p>
+                    <div class="form-group">
+                        <label for="name" class="form-label" data-i18n="formName">Nom</label>
+                        <input type="text" id="name" name="name" required class="form-input" data-i18n="formNamePlaceholder" placeholder="Votre nom">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label" data-i18n="formEmail">Email</label>
+                        <input type="email" id="email" name="email" required class="form-input" data-i18n="formEmailPlaceholder" placeholder="votre@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject" class="form-label" data-i18n="formSubject">Sujet</label>
+                        <select id="subject" name="subject" required class="form-select">
+                            <option value="" disabled selected data-i18n="formSubjectPlaceholder">Choisir un sujet</option>
+                            <option value="dj-booking" data-i18n="contactType1">Booking DJ</option>
+                            <option value="music-collab" data-i18n="contactType2">Collaborations musicales</option>
+                            <option value="tech-ai" data-i18n="contactType3">Projets tech & IA</option>
+                            <option value="streaming" data-i18n="contactType4">Partenariats streaming</option>
+                            <option value="other" data-i18n="formSubjectOther">Autre</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="form-label" data-i18n="formMessage">Message</label>
+                        <textarea id="message" name="message" required class="form-textarea" rows="5" data-i18n="formMessagePlaceholder" placeholder="Votre message..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary magnetic form-submit">
+                        <span class="btn-text" data-i18n="formSend">Envoyer</span>
+                        <svg class="btn-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                        </svg>
+                    </button>
+                </form>
             </div>
             <div class="footer-marquee">
                 <div class="marquee-track">

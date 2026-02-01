@@ -94,6 +94,16 @@ const translations = {
         contactType2: "Collaborations musicales",
         contactType3: "Projets tech & IA",
         contactType4: "Partenariats streaming",
+        formName: "Nom",
+        formNamePlaceholder: "Votre nom",
+        formEmail: "Email",
+        formEmailPlaceholder: "votre@email.com",
+        formSubject: "Sujet",
+        formSubjectPlaceholder: "Choisir un sujet",
+        formSubjectOther: "Autre",
+        formMessage: "Message",
+        formMessagePlaceholder: "Votre message...",
+        formSend: "Envoyer",
 
         // Footer
         footerText: "© 2026 Ludovic — DJ · Artiste · Chief AI Officer"
@@ -185,6 +195,16 @@ const translations = {
         contactType2: "Music collaborations",
         contactType3: "Tech & AI projects",
         contactType4: "Streaming partnerships",
+        formName: "Name",
+        formNamePlaceholder: "Your name",
+        formEmail: "Email",
+        formEmailPlaceholder: "your@email.com",
+        formSubject: "Subject",
+        formSubjectPlaceholder: "Choose a subject",
+        formSubjectOther: "Other",
+        formMessage: "Message",
+        formMessagePlaceholder: "Your message...",
+        formSend: "Send",
 
         // Footer
         footerText: "© 2026 Ludovic — DJ · Artist · Chief AI Officer"
