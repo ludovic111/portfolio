@@ -1,0 +1,7 @@
+# robots.txt for Ludovic Portfolio
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://ludovic.netlify.app/sitemap.xml

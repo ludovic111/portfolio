@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ludovic — DJ · Artiste · Chief AI Officer</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <meta name="description" content="Portfolio de Ludovic — DJ, artiste rap et Chief AI Officer basé à Genève. Découvrez mes projets musicaux, tech et streaming.">
+    <link rel="canonical" href="https://ludovic.netlify.app/">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Ludovic — DJ · Artiste · Chief AI Officer">
+    <meta property="og:description" content="DJ, artiste rap et Chief AI Officer basé à Genève. Musique, tech et streaming.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ludovic.netlify.app/">
+    <meta property="og:image" content="https://ludovic.netlify.app/assets/images/headshot.jpeg">
+    <meta property="og:locale" content="fr_CH">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ludovic — DJ · Artiste · Chief AI Officer">
+    <meta name="twitter:description" content="DJ, artiste rap et Chief AI Officer basé à Genève.">
+    <meta name="twitter:image" content="https://ludovic.netlify.app/assets/images/headshot.jpeg">
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0a0a0a">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loading-text">
+            <span class="loading-char">L</span>
+            <span class="loading-char">U</span>
+            <span class="loading-char">D</span>
+            <span class="loading-char">O</span>
+            <span class="loading-char">V</span>
+            <span class="loading-char">I</span>
+            <span class="loading-char">C</span>
+        </div>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+    </div>
+
+    <!-- Ambient Background -->
+    <div class="ambient-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="noise-overlay"></div>
+    </div>
+
+    <!-- Skip to content for accessibility -->
+    <a href="#about" class="skip-link">Skip to content</a>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-brand">
+            <span class="nav-logo">L</span>
+        </div>
+        <div class="nav-links">
+            <a href="#about" class="nav-link magnetic" data-i18n="navAbout">À propos</a>
+            <a href="#dj" class="nav-link magnetic" data-i18n="navDJ">DJ</a>
+            <a href="#musique" class="nav-link magnetic" data-i18n="navMusic">Musique</a>
+            <a href="#tech" class="nav-link magnetic" data-i18n="navTech">Tech</a>
+            <a href="#streaming" class="nav-link magnetic" data-i18n="navStreaming">Streaming</a>
+            <a href="#contact" class="nav-link magnetic" data-i18n="navContact">Contact</a>
+        </div>
+        <div class="lang-toggle">
+            <button class="lang-btn active" data-lang="fr">FR</button>
+            <span class="lang-separator">|</span>
+            <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <button class="menu-toggle" aria-label="Menu">
+            <span class="menu-line"></span>
+            <span class="menu-line"></span>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-bg"></div>
+        <div class="mobile-links">
+            <a href="#about" class="mobile-link" data-i18n="navAbout">À propos</a>
+            <a href="#dj" class="mobile-link" data-i18n="navDJ">DJ</a>
+            <a href="#musique" class="mobile-link" data-i18n="navMusic">Musique</a>
+            <a href="#tech" class="mobile-link" data-i18n="navTech">Tech</a>
+            <a href="#streaming" class="mobile-link" data-i18n="navStreaming">Streaming</a>
+            <a href="#contact" class="mobile-link" data-i18n="navContact">Contact</a>
+        </div>
+        <div class="mobile-lang-toggle">
+            <button class="lang-btn active" data-lang="fr">FR</button>
+            <span class="lang-separator">|</span>
+            <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+    </div>
+
+    <main class="main">
+        <!-- Hero Section -->
+        <section class="hero" id="about">
+            <div class="hero-content">
+                <div class="hero-eyebrow">
+                    <span class="line"></span>
+                    <span class="text" data-i18n="heroEyebrow">Portfolio 2026</span>
+                </div>
+                <h1 class="hero-title">
+                    <span class="title-line">
+                        <span class="char">L</span><span class="char">u</span><span class="char">d</span><span class="char">o</span><span class="char">v</span><span class="char">i</span><span class="char">c</span>
+                    </span>
+                </h1>
+                <div class="hero-roles">
+                    <span class="role" data-role="DJ">DJ</span>
+                    <span class="separator">·</span>
+                    <span class="role" data-role="Artiste">Artiste</span>
+                    <span class="separator">·</span>
+                    <span class="role" data-role="Chief AI Officer">Chief AI Officer</span>
+                </div>
+                <p class="hero-bio" data-i18n="heroBio">
+                    Étudiant au Collège Émilie-Gourd (maturité juin 2026), basé à Genève. Je navigue entre la musique, la tech et le streaming — passionné par l'intersection entre créativité et innovation.
+                </p>
+                <div class="hero-cta">
+                    <a href="#dj" class="btn btn-primary magnetic">
+                        <span class="btn-text" data-i18n="heroBtn">Découvrir</span>
+                        <svg class="btn-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="headshot-container">
+                    <div class="headshot-frame">
+                        <img src="assets/images/headshot.jpeg" alt="Ludovic" class="headshot-img">
+                        <div class="headshot-border"></div>
+                    </div>
+                    <div class="floating-badge badge-1">
+                        <span class="badge-year">2026</span>
+                        <span class="badge-text" data-i18n="badgeMaturite">Maturité</span>
+                    </div>
+                    <div class="floating-badge badge-2">
+                        <span class="badge-icon">📍</span>
+                        <span class="badge-text">Genève</span>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span class="scroll-text" data-i18n="scrollText">Scroll</span>
+                <div class="scroll-line">
+                    <div class="scroll-dot"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DJ Section -->
+        <section class="section" id="dj">
+            <div class="section-grid">
+                <div class="section-visual">
+                    <div class="visual-card dj-card">
+                        <div class="card-glow"></div>
+                        <div class="dj-image-wrapper">
+                            <img src="assets/images/djing_picture_1.jpg" alt="Ludovic DJ" class="dj-image" loading="lazy">
+                            <div class="dj-overlay">
+                                <div class="equalizer">
+                                    <span></span><span></span><span></span><span></span><span></span>
+                                    <span></span><span></span><span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <span class="section-number">01</span>
+                    <h2 class="section-title">
+                        <span class="title-text" data-i18n="djTitle">DJ</span>
+                    </h2>
+                    <p class="section-desc" data-i18n="djDesc">
+                        Je mixe depuis janvier 2024, principalement lors de soirées étudiantes à Genève. Mon style couvre tout ce qui est commercial, avec une prédilection pour le rap US.
+                    </p>
+
+                    <div class="subsection">
+                        <h3 class="subsection-title" data-i18n="djStyleTitle">Style musical</h3>
+                        <div class="genre-tags">
+                            <span class="genre-tag" data-i18n="genreRapUS">Rap US</span>
+                            <span class="genre-tag" data-i18n="genreHipHop">Hip-Hop commercial</span>
+                            <span class="genre-tag" data-i18n="genreRnB">R&B</span>
+                            <span class="genre-tag" data-i18n="genreAfrobeats">Afrobeats</span>
+                            <span class="genre-tag" data-i18n="genrePop">Pop</span>
+                            <span class="genre-tag" data-i18n="genreEDM">EDM</span>
+                            <span class="genre-tag" data-i18n="genreReggaeton">Reggaeton</span>
+                        </div>
+                        <p class="subsection-desc" data-i18n="djStyleDesc">Sets énergiques orientés dancefloor, transitions fluides entre les hits du moment et les classiques.</p>
+                    </div>
+
+                    <div class="subsection">
+                        <h3 class="subsection-title" data-i18n="djExpTitle">Expérience</h3>
+                        <ul class="experience-list">
+                            <li data-i18n="djExp1">Soirées étudiantes et événements privés à Genève</li>
+                            <li data-i18n="djExp2">Sets adaptés à tous types d'audiences</li>
+                        </ul>
+                    </div>
+
+                    <div class="equipment-section">
+                        <h3 class="subsection-title" data-i18n="djEquipTitle">Équipement</h3>
+                        <div class="equipment-items">
+                            <div class="equipment-item">
+                                <span class="equipment-name">Pioneer DDJ-FLX10</span>
+                                <span class="equipment-type" data-i18n="djEquipController">Contrôleur</span>
+                            </div>
+                            <div class="equipment-item">
+                                <span class="equipment-name">Rekordbox</span>
+                                <span class="equipment-type" data-i18n="djEquipSoftware">Logiciel</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="mailto:lmariecontact@proton.me?subject=Booking DJ" class="btn btn-primary magnetic booking-btn">
+                        <span class="btn-text" data-i18n="djBooking">Booking</span>
+                        <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Musique Section -->
+        <section class="section section-dark" id="musique">
+            <div class="section-grid reverse">
+                <div class="section-content">
+                    <span class="section-number">02</span>
+                    <h2 class="section-title">
+                        <span class="title-text" data-i18n="musicTitle">Musique</span>
+                    </h2>
+                    <p class="section-desc" data-i18n="musicDesc" data-i18n-html>
+                        Je fais du rap sous le nom <strong>Ludovic</strong>. Artiste rap basé en Suisse, je développe un style personnel mêlant influences américaines et européennes. Mes textes abordent des thèmes personnels avec une production moderne.
+                    </p>
+
+                    <div class="discography">
+                        <h3 class="subsection-title" data-i18n="musicDiscoTitle">Discographie</h3>
+                        <div class="release-card">
+                            <div class="release-artwork">
+                                <img src="assets/images/LOADING_Single_cover.JPG" alt="LOADING - Single Cover" class="release-cover" loading="lazy">
+                            </div>
+                            <div class="release-info">
+                                <span class="release-type" data-i18n="musicReleaseType">Premier single</span>
+                                <h4 class="release-name">LOADING</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="platform-links">
+                        <a href="https://music.apple.com/ch/artist/ludovic/1854313232?l=en-GB" target="_blank" rel="noopener" class="platform-btn magnetic">
+                            <span class="platform-icon">🎵</span>
+                            <div class="platform-info">
+                                <span class="platform-name">Apple Music</span>
+                                <span class="platform-action" data-i18n="musicListen">Écouter</span>
+                            </div>
+                            <svg class="platform-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                            </svg>
+                        </a>
+                        <a href="https://open.spotify.com/artist/2G6ALmQ9WNsaqP0QsJFTJ8" target="_blank" rel="noopener" class="platform-btn magnetic">
+                            <span class="platform-icon">🎧</span>
+                            <div class="platform-info">
+                                <span class="platform-name">Spotify</span>
+                                <span class="platform-action" data-i18n="musicListen">Écouter</span>
+                            </div>
+                            <svg class="platform-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="section-visual">
+                    <div class="visual-card music-card">
+                        <div class="card-glow"></div>
+                        <div class="floating-notes">
+                            <span class="note">♪</span>
+                            <span class="note">♫</span>
+                            <span class="note">♬</span>
+                            <span class="note">♭</span>
+                            <span class="note">♩</span>
+                        </div>
+                        <div class="artist-name">Ludovic</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech & AI Section -->
+        <section class="section" id="tech">
+            <div class="tech-header">
+                <span class="section-number">03</span>
+                <h2 class="section-title centered">
+                    <span class="title-text" data-i18n="techTitle">Tech & AI</span>
+                </h2>
+                <p class="tech-intro" data-i18n="techIntro">Je combine passion tech et projets concrets, avec un focus sur l'intelligence artificielle et le développement web.</p>
+            </div>
+
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="card-shine"></div>
+                    <div class="tech-icon">🤖</div>
+                    <h3 class="tech-role" data-i18n="techRole1">Chief AI Officer</h3>
+                    <a href="https://goeko.ch" target="_blank" rel="noopener" class="company-link">Goeko</a>
+                    <p class="tech-desc" data-i18n="techDesc1">
+                        Je gère toute la pipeline IA pour identifier les subsides et régulations environnementales par région.
+                    </p>
+                    <div class="responsibilities">
+                        <div class="resp-item" data-i18n="techResp1_1">Conception et déploiement des modèles d'IA</div>
+                        <div class="resp-item" data-i18n="techResp1_2">Automatisation de la veille réglementaire</div>
+                        <div class="resp-item" data-i18n="techResp1_3">Intégration des outils IA dans les workflows</div>
+                    </div>
+                </div>
+
+                <div class="tech-card">
+                    <div class="card-shine"></div>
+                    <div class="tech-icon">🛒</div>
+                    <h3 class="tech-role" data-i18n="techRole2">Créateur</h3>
+                    <a href="https://mercheg.com" target="_blank" rel="noopener" class="company-link">mercheg.com</a>
+                    <p class="tech-desc" data-i18n="techDesc2">
+                        Boutique en ligne de l'Association d'élèves d'Émilie-Gourd.
+                    </p>
+                    <div class="responsibilities">
+                        <div class="resp-item" data-i18n="techResp2_1">Développement complet du site e-commerce</div>
+                        <div class="resp-item" data-i18n="techResp2_2">Stack : Shopify + personnalisations custom</div>
+                        <div class="resp-item" data-i18n="techResp2_3">Gestion des commandes et de la logistique</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stack-section">
+                <h3 class="stack-title" data-i18n="techStackTitle">Stack technique</h3>
+                <div class="stack-categories">
+                    <div class="stack-category">
+                        <span class="stack-label" data-i18n="techStackAI">IA & Coding</span>
+                        <div class="stack-items">
+                            <span class="stack-item magnetic">Claude Code</span>
+                            <span class="stack-item magnetic">Kimi Code</span>
+                            <span class="stack-item magnetic">Vibe Coding</span>
+                        </div>
+                    </div>
+                    <div class="stack-category">
+                        <span class="stack-label" data-i18n="techStackWeb">Web</span>
+                        <div class="stack-items">
+                            <span class="stack-item magnetic">Shopify</span>
+                            <span class="stack-item magnetic">HTML/CSS</span>
+                            <span class="stack-item magnetic">JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="stack-category">
+                        <span class="stack-label" data-i18n="techStackTools">Outils</span>
+                        <div class="stack-items">
+                            <span class="stack-item magnetic">Git</span>
+                            <span class="stack-item magnetic">APIs</span>
+                            <span class="stack-item magnetic">Automatisation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="philosophy">
+                <p class="philosophy-text" data-i18n="techPhilosophy" data-i18n-html>
+                    Adepte du <em>vibe coding</em> — une approche intuitive du développement où l'IA assiste la création de code de manière fluide et créative.
+                </p>
+            </div>
+        </section>
+
+        <!-- Streaming Section -->
+        <section class="section section-dark" id="streaming">
+            <div class="section-grid">
+                <div class="section-visual">
+                    <div class="visual-card stream-card">
+                        <div class="card-glow"></div>
+                        <div class="clapegrint-logo-wrapper">
+                            <img src="assets/images/clapegrint_logo.png" alt="Clapegrint" class="clapegrint-logo" loading="lazy">
+                        </div>
+                        <div class="stream-stats">
+                            <div class="stat">
+                                <span class="stat-label" data-i18n="streamManager">Manager</span>
+                                <span class="stat-value">Clapegrint</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <span class="section-number">04</span>
+                    <h2 class="section-title">
+                        <span class="title-text" data-i18n="streamTitle">Streaming</span>
+                    </h2>
+                    <p class="section-desc" data-i18n="streamDesc" data-i18n-html>
+                        <strong>Clapegrint</strong> est un collectif de streamers et créateurs de contenu. Je gère la stratégie, le développement de la communauté et les aspects business.
+                    </p>
+
+                    <div class="activities">
+                        <h3 class="subsection-title" data-i18n="streamActivitiesTitle">Activités</h3>
+                        <div class="activity-tags">
+                            <span class="activity-tag" data-i18n="streamActivity1">Multi gaming</span>
+                            <span class="activity-tag" data-i18n="streamActivity2">Streams IRL</span>
+                            <span class="activity-tag" data-i18n="streamActivity3">Création de contenu court format</span>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="https://kick.com/clapegrint" target="_blank" rel="noopener" class="social-btn magnetic kick-btn">
+                            <img src="assets/images/Icon.jpeg" alt="Kick" class="btn-icon-img">
+                            <span class="btn-label">Kick</span>
+                            <span class="btn-sublabel" data-i18n="streamLives">Lives réguliers</span>
+                        </a>
+                        <a href="https://www.instagram.com/clapegrint" target="_blank" rel="noopener" class="social-btn magnetic instagram-btn">
+                            <img src="assets/images/Instagram_icon.png.webp" alt="Instagram" class="btn-icon-img">
+                            <span class="btn-label">Instagram</span>
+                            <span class="btn-sublabel" data-i18n="streamBehind">Behind the scenes</span>
+                        </a>
+                        <a href="https://www.tiktok.com/@clapegrint" target="_blank" rel="noopener" class="social-btn magnetic tiktok-btn">
+                            <img src="assets/images/tiktok_logo.png" alt="TikTok" class="btn-icon-img">
+                            <span class="btn-label">TikTok</span>
+                            <span class="btn-sublabel" data-i18n="streamClips">Clips et moments forts</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Section -->
+        <section class="section social-section" id="social">
+            <h2 class="section-title centered">
+                <span class="title-text" data-i18n="socialTitle">Me suivre</span>
+            </h2>
+            <p class="social-intro" data-i18n="socialIntro">Retrouvez-moi sur les réseaux pour suivre mes projets</p>
+            <div class="social-grid">
+                <a href="https://www.instagram.com/lu4ovic" target="_blank" rel="noopener" class="social-tile magnetic instagram-tile">
+                    <div class="tile-content">
+                        <img src="assets/images/Instagram_icon.png.webp" alt="Instagram" class="tile-icon-img">
+                        <span class="tile-name">Instagram</span>
+                        <span class="tile-handle">@lu4ovic</span>
+                    </div>
+                    <div class="tile-bg"></div>
+                </a>
+                <a href="https://x.com/lu4ovic" target="_blank" rel="noopener" class="social-tile magnetic x-tile">
+                    <div class="tile-content">
+                        <span class="tile-icon">𝕏</span>
+                        <span class="tile-name">X (Twitter)</span>
+                        <span class="tile-handle">@lu4ovic</span>
+                    </div>
+                    <div class="tile-bg"></div>
+                </a>
+                <a href="https://www.tiktok.com/@lu4ovic" target="_blank" rel="noopener" class="social-tile magnetic tiktok-tile">
+                    <div class="tile-content">
+                        <span class="tile-icon">🎵</span>
+                        <span class="tile-name">TikTok</span>
+                        <span class="tile-handle">@lu4ovic</span>
+                    </div>
+                    <div class="tile-bg"></div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section section-dark contact-section" id="contact">
+            <div class="contact-content">
+                <span class="section-number">05</span>
+                <h2 class="section-title centered">
+                    <span class="title-text" data-i18n="contactTitle">Contact</span>
+                </h2>
+                <p class="contact-intro" data-i18n="contactIntro">
+                    Pour toute demande professionnelle
+                </p>
+                <div class="contact-types">
+                    <span class="contact-type" data-i18n="contactType1">Booking DJ</span>
+                    <span class="contact-type" data-i18n="contactType2">Collaborations musicales</span>
+                    <span class="contact-type" data-i18n="contactType3">Projets tech & IA</span>
+                    <span class="contact-type" data-i18n="contactType4">Partenariats streaming</span>
+                </div>
+                <a href="mailto:lmariecontact@proton.me" class="email-link magnetic">
+                    <span class="email-icon">📧</span>
+                    <span class="email-text">lmariecontact@proton.me</span>
+                    <span class="email-arrow">→</span>
+                </a>
+            </div>
+            <div class="footer-marquee">
+                <div class="marquee-track">
+                    <span>Let's connect</span>
+                    <span class="dot">•</span>
+                    <span>Let's create</span>
+                    <span class="dot">•</span>
+                    <span>Let's collaborate</span>
+                    <span class="dot">•</span>
+                    <span>Let's connect</span>
+                    <span class="dot">•</span>
+                    <span>Let's create</span>
+                    <span class="dot">•</span>
+                    <span>Let's collaborate</span>
+                    <span class="dot">•</span>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p data-i18n="footerText">© 2026 Ludovic — DJ · Artiste · Chief AI Officer</p>
+            <button class="back-to-top magnetic" aria-label="Retour en haut">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 19V5M12 5l-7 7M12 5l7 7"/>
+                </svg>
+            </button>
+        </footer>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
