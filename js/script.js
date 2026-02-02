@@ -772,5 +772,118 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ============================================
+    // CUSTOM AUDIO PLAYER
+    // ============================================
+    const audioPlayer = document.getElementById('audio-player');
+    const mainPlayBtn = document.getElementById('main-play-btn');
+    const overlayPlayBtn = document.querySelector('.play-overlay-btn');
+    const progressContainer = document.querySelector('.progress-container');
+    const progressFill = document.querySelector('.progress-fill');
+    const currentTimeEl = document.querySelector('.current-time');
+    const durationEl = document.querySelector('.duration');
+    const muteBtn = document.getElementById('mute-btn');
+    
+    // Only init if player exists
+    if (audioPlayer && mainPlayBtn && progressContainer) {
+        let isPlaying = false;
+        
+        // Toggle Play/Pause
+        function togglePlay() {
+            if (isPlaying) {
+                audioPlayer.pause();
+            } else {
+                audioPlayer.play();
+            }
+        }
+        
+        function updatePlayIcons(playing) {
+            isPlaying = playing;
+            const icons = [mainPlayBtn, overlayPlayBtn];
+            
+            icons.forEach(btn => {
+                const playIcon = btn.querySelector('.play-icon');
+                const pauseIcon = btn.querySelector('.pause-icon');
+                if (playIcon && pauseIcon) {
+                    if (playing) {
+                        playIcon.classList.add('hidden');
+                        pauseIcon.classList.remove('hidden');
+                    } else {
+                        playIcon.classList.remove('hidden');
+                        pauseIcon.classList.add('hidden');
+                    }
+                }
+            });
+
+            // Also animate the vinyl cover if playing
+            const vinylCover = document.querySelector('.release-cover');
+            if (vinylCover) {
+                if (playing) {
+                    vinylCover.style.animation = 'spin 8s linear infinite';
+                } else {
+                    vinylCover.style.animation = 'none';
+                    // Optional: could pause animation at current rotation, but none is simpler
+                }
+            }
+        }
+        
+        mainPlayBtn.addEventListener('click', togglePlay);
+        if (overlayPlayBtn) overlayPlayBtn.addEventListener('click', togglePlay);
+        
+        audioPlayer.addEventListener('play', () => updatePlayIcons(true));
+        audioPlayer.addEventListener('pause', () => updatePlayIcons(false));
+        
+        // Time Update
+        audioPlayer.addEventListener('timeupdate', (e) => {
+            const { duration, currentTime } = e.srcElement;
+            const progressPercent = (currentTime / duration) * 100;
+            progressFill.style.width = `${progressPercent}%`;
+            
+            // Format Time
+             const formatTime = (time) => {
+                if (isNaN(time)) return "0:00";
+                const minutes = Math.floor(time / 60);
+                const seconds = Math.floor(time % 60);
+                return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            };
+            
+            currentTimeEl.textContent = formatTime(currentTime);
+            // Avoid NaN duration
+            if (duration) {
+                durationEl.textContent = formatTime(duration);
+            }
+        });
+        
+        // Click on progress bar
+        progressContainer.addEventListener('click', (e) => {
+            const width = progressContainer.clientWidth;
+            const clickX = e.offsetX;
+            const duration = audioPlayer.duration;
+            
+            audioPlayer.currentTime = (clickX / width) * duration;
+        });
+        
+        // Mute
+        muteBtn.addEventListener('click', () => {
+            audioPlayer.muted = !audioPlayer.muted;
+            const iconPath = muteBtn.querySelector('path');
+            // Simple visual toggle for mute (or could swap icons)
+            if (audioPlayer.muted) {
+                muteBtn.style.opacity = '0.5';
+                iconPath.setAttribute('d', 'M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6'); // Strike through or x
+            } else {
+                muteBtn.style.opacity = '1';
+                iconPath.setAttribute('d', 'M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 0 1 0 7.07'); // Normal volume
+            }
+        });
+
+        // Song End
+        audioPlayer.addEventListener('ended', () => {
+            updatePlayIcons(false);
+            audioPlayer.currentTime = 0;
+            progressFill.style.width = '0%';
+        });
+    }
+
     console.log('🎵 Ludovic portfolio loaded with stunning animations!');
 });

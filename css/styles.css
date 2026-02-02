@@ -212,6 +212,141 @@ img {
     animation: orbFloat 20s ease-in-out infinite;
 }
 
+/* ============================================
+   CUSTOM AUDIO PLAYER
+   ============================================ */
+.custom-audio-player {
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
+.audio-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.control-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-accent);
+}
+
+.progress-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: var(--color-accent);
+    border-radius: 2px;
+    transition: width 0.1s linear;
+}
+
+.time-display {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    font-variant-numeric: tabular-nums;
+    min-width: 60px;
+    text-align: right;
+}
+
+/* Play Overlay on Artwork */
+.release-card {
+    position: relative;
+    /* ensure card can contain absolute elements properly if not already */
+}
+
+.release-artwork {
+    position: relative;
+}
+
+.play-overlay-btn {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.release-artwork:hover .play-overlay-btn {
+    opacity: 1;
+}
+
+.play-overlay-btn .play-icon,
+.play-overlay-btn .pause-icon {
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    transform: scale(0.8);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.release-artwork:hover .play-overlay-btn .play-icon,
+.release-artwork:hover .play-overlay-btn .pause-icon {
+    transform: scale(1.5);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Enhanced Ambient Background - More "Alive" */
+.orb-1 {
+    animation-duration: 25s;
+}
+
+.orb-2 {
+    animation-duration: 32s;
+    animation-direction: reverse;
+}
+
+.orb-3 {
+    animation-duration: 28s;
+}
+
+/* Add a new subtle grid or connection lines if desired, 
+   but for now, tuning the orbs is a safe "vibe" enhancement */
+
 .orb-1 {
     width: 600px;
     height: 600px;

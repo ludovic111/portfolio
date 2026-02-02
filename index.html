@@ -292,10 +292,49 @@
                         <div class="release-card">
                             <div class="release-artwork">
                                 <img src="assets/images/LOADING_Single_cover.webp" alt="LOADING - Single Cover" class="release-cover" loading="lazy">
+                                <button class="play-overlay-btn" aria-label="Play/Pause">
+                                    <svg class="play-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                    <svg class="pause-icon hidden" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                                    </svg>
+                                </button>
                             </div>
                             <div class="release-info">
                                 <span class="release-type" data-i18n="musicReleaseType">Premier single</span>
                                 <h4 class="release-name">LOADING</h4>
+                                
+                                <!-- Custom Audio Player -->
+                                <div class="custom-audio-player">
+                                    <audio id="audio-player" src="assets/audio/loading_preview.mp3" preload="metadata"></audio>
+                                    <div class="audio-controls">
+                                        <button id="main-play-btn" class="control-btn magnetic" aria-label="Play">
+                                            <svg class="play-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M8 5v14l11-7z"/>
+                                            </svg>
+                                            <svg class="pause-icon hidden" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                                            </svg>
+                                        </button>
+                                        <div class="progress-container magnetic">
+                                            <div class="progress-bar">
+                                                <div class="progress-fill"></div>
+                                            </div>
+                                            <div class="time-display">
+                                                <span class="current-time">0:00</span> / <span class="duration">0:30</span>
+                                            </div>
+                                        </div>
+                                        <div class="volume-container">
+                                            <button id="mute-btn" class="control-btn magnetic" aria-label="Mute">
+                                                <svg class="volume-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 0 1 0 7.07"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
