@@ -410,8 +410,13 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (menuToggle && mobileMenu) {
         let previousFocusedElement = null;
+        let menuFocusTimer = null;
 
         const closeMenu = () => {
+            if (menuFocusTimer) {
+                window.clearTimeout(menuFocusTimer);
+                menuFocusTimer = null;
+            }
             menuToggle.classList.remove('active');
             mobileMenu.classList.remove('active');
             menuToggle.setAttribute('aria-expanded', 'false');
@@ -429,10 +434,12 @@ document.addEventListener('DOMContentLoaded', () => {
             menuToggle.setAttribute('aria-expanded', 'true');
             mobileMenu.setAttribute('aria-hidden', 'false');
             document.body.style.overflow = 'hidden';
-            const firstLink = mobileMenu.querySelector('.mobile-link');
-            if (firstLink instanceof HTMLElement) {
-                firstLink.focus();
-            }
+            menuFocusTimer = window.setTimeout(() => {
+                const firstLink = mobileMenu.querySelector('.mobile-link');
+                if (firstLink instanceof HTMLElement) {
+                    firstLink.focus();
+                }
+            }, prefersReducedMotion ? 0 : 160);
         };
 
         menuToggle.addEventListener('click', () => {
