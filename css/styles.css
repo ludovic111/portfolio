@@ -65,7 +65,7 @@ img {
     z-index: 9999;
     mix-blend-mode: difference;
     transform: translate(-50%, -50%);
-    transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease;
+    transition: width 0.22s var(--ease-smooth), height 0.22s var(--ease-smooth), border-color 0.22s var(--ease-smooth), background-color 0.22s var(--ease-smooth);
     will-change: transform;
 }
 
@@ -85,7 +85,7 @@ img {
     pointer-events: none;
     z-index: 9998;
     transform: translate(-50%, -50%);
-    transition: all 0.15s ease-out;
+    transition: width 0.24s var(--ease-smooth), height 0.24s var(--ease-smooth), border-color 0.24s var(--ease-smooth), background-color 0.24s var(--ease-smooth);
     will-change: transform;
 }
 
@@ -698,10 +698,7 @@ img {
 
 .title-line {
     display: block;
-    background: linear-gradient(180deg, #ffffff 0%, #f0f0f0 55%, #cfcfcf 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #f5f9ff;
     text-shadow: 0 10px 40px rgba(255, 255, 255, 0.1);
 }
 
@@ -710,6 +707,11 @@ img {
     font-family: var(--font-sans);
     font-style: normal;
     font-weight: 650;
+    background: linear-gradient(180deg, #ffffff 0%, #eef6ff 55%, #c8ddff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
     transform: translateY(100%);
     animation: charReveal 1.2s var(--ease-out-expo) forwards;
 }

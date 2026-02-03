@@ -302,10 +302,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
         
         function animateCursor() {
-            cursorX += (mouseX - cursorX) * 0.12;
-            cursorY += (mouseY - cursorY) * 0.12;
-            followerX += (mouseX - followerX) * 0.06;
-            followerY += (mouseY - followerY) * 0.06;
+            cursorX += (mouseX - cursorX) * 0.2;
+            cursorY += (mouseY - cursorY) * 0.2;
+            followerX += (mouseX - followerX) * 0.14;
+            followerY += (mouseY - followerY) * 0.14;
             
             cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`;
             cursorFollower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0) translate(-50%, -50%)`;
