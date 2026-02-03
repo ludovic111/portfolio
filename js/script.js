@@ -270,16 +270,22 @@ function throttle(func, limit) {
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize language system
     initLanguage();
+    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const enableMotionEffects = !isTouchDevice && !prefersReducedMotion;
+
     // ============================================
     // LOADING SCREEN
     // ============================================
     const loadingScreen = document.querySelector('.loading-screen');
     
     window.addEventListener('load', () => {
-        setTimeout(() => {
-            loadingScreen.classList.add('hidden');
+        window.setTimeout(() => {
+            if (loadingScreen) {
+                loadingScreen.classList.add('hidden');
+            }
             initAnimations();
-        }, 2000);
+        }, prefersReducedMotion ? 0 : 120);
     });
 
     // ============================================
@@ -287,11 +293,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============================================
     const cursor = document.querySelector('.cursor');
     const cursorFollower = document.querySelector('.cursor-follower');
-    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const enableMotionEffects = !isTouchDevice && !prefersReducedMotion;
     
     if (enableMotionEffects && cursor && cursorFollower) {
+        document.body.classList.add('has-custom-cursor');
         let mouseX = 0, mouseY = 0;
         let cursorX = 0, cursorY = 0;
         let followerX = 0, followerY = 0;
@@ -405,18 +409,77 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileLinks = document.querySelectorAll('.mobile-link');
     
     if (menuToggle && mobileMenu) {
+        let previousFocusedElement = null;
+
+        const closeMenu = () => {
+            menuToggle.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            mobileMenu.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            if (previousFocusedElement instanceof HTMLElement) {
+                previousFocusedElement.focus();
+            }
+        };
+
+        const openMenu = () => {
+            previousFocusedElement = document.activeElement;
+            menuToggle.classList.add('active');
+            mobileMenu.classList.add('active');
+            menuToggle.setAttribute('aria-expanded', 'true');
+            mobileMenu.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            const firstLink = mobileMenu.querySelector('.mobile-link');
+            if (firstLink instanceof HTMLElement) {
+                firstLink.focus();
+            }
+        };
+
         menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            if (mobileMenu.classList.contains('active')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
         });
         
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
+                closeMenu();
             });
+        });
+
+        mobileMenu.addEventListener('click', (event) => {
+            if (event.target.classList.contains('mobile-menu-bg')) {
+                closeMenu();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (!mobileMenu.classList.contains('active')) return;
+
+            if (event.key === 'Escape') {
+                event.preventDefault();
+                closeMenu();
+                return;
+            }
+
+            if (event.key !== 'Tab') return;
+            const focusableEls = mobileMenu.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])');
+            const focusable = Array.from(focusableEls).filter((el) => !el.hasAttribute('disabled'));
+            if (!focusable.length) return;
+
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            const active = document.activeElement;
+
+            if (event.shiftKey && active === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && active === last) {
+                event.preventDefault();
+                first.focus();
+            }
         });
     }
 
@@ -425,14 +488,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============================================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (!href || href === '#') return;
+
+            const target = document.querySelector(href);
+            if (!target) return;
+            if (this.classList.contains('skip-link')) return;
+
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                const offsetTop = target.offsetTop - 100;
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
+
+            const offsetTop = target.getBoundingClientRect().top + window.scrollY - 100;
+            window.scrollTo({
+                top: Math.max(offsetTop, 0),
+                behavior: prefersReducedMotion ? 'auto' : 'smooth'
+            });
+
+            if (window.history?.pushState) {
+                window.history.pushState(null, '', href);
             }
         });
     });
@@ -848,8 +920,10 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Time Update
         audioPlayer.addEventListener('timeupdate', (e) => {
-            const { duration, currentTime } = e.srcElement;
-            const progressPercent = (currentTime / duration) * 100;
+            const player = e.currentTarget;
+            if (!(player instanceof HTMLAudioElement)) return;
+            const { duration, currentTime } = player;
+            const progressPercent = duration ? (currentTime / duration) * 100 : 0;
             progressFill.style.width = `${progressPercent}%`;
             
             // Format Time

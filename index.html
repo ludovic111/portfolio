@@ -120,14 +120,14 @@
             <span class="lang-separator">|</span>
             <button class="lang-btn" data-lang="en">EN</button>
         </div>
-        <button class="menu-toggle" aria-label="Menu">
+        <button class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu" aria-haspopup="true">
             <span class="menu-line"></span>
             <span class="menu-line"></span>
         </button>
     </nav>
 
     <!-- Mobile Menu -->
-    <div class="mobile-menu">
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
         <div class="mobile-menu-bg"></div>
         <div class="mobile-links">
             <a href="#about" class="mobile-link" data-i18n="navAbout">À propos</a>
@@ -179,7 +179,7 @@
             <div class="hero-visual">
                 <div class="headshot-container">
                     <div class="headshot-frame">
-                        <img src="assets/images/headshot.webp" alt="Ludovic" class="headshot-img">
+                        <img src="assets/images/headshot-1200.webp" srcset="assets/images/headshot-800.webp 800w, assets/images/headshot-1200.webp 1200w, assets/images/headshot.webp 4000w" sizes="(max-width: 768px) 300px, 400px" width="4000" height="6000" fetchpriority="high" decoding="async" alt="Ludovic" class="headshot-img">
                         <div class="headshot-border"></div>
                     </div>
                     <div class="floating-badge badge-1">
@@ -207,7 +207,7 @@
                     <div class="visual-card dj-card">
                         <div class="card-glow"></div>
                         <div class="dj-image-wrapper">
-                            <img src="assets/images/djing_picture_1.webp" alt="Ludovic DJ" class="dj-image" loading="lazy">
+                            <img src="assets/images/djing_picture_1.webp" width="1200" height="1600" decoding="async" alt="Ludovic DJ" class="dj-image" loading="lazy">
                             <div class="dj-overlay">
                                 <div class="equalizer">
                                     <span></span><span></span><span></span><span></span><span></span>
@@ -288,7 +288,7 @@
                         <h3 class="subsection-title" data-i18n="musicDiscoTitle">Discographie</h3>
                         <div class="release-card">
                             <div class="release-artwork">
-                                <img src="assets/images/LOADING_Single_cover.webp" alt="LOADING - Single Cover" class="release-cover" loading="lazy">
+                                <img src="assets/images/LOADING_Single_cover.webp" width="1000" height="1000" decoding="async" alt="LOADING - Single Cover" class="release-cover" loading="lazy">
                                 <button class="play-overlay-btn" aria-label="Play/Pause">
                                     <svg class="play-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M8 5v14l11-7z"/>
@@ -337,7 +337,7 @@
                     </div>
 
                     <div class="platform-links">
-                        <a href="https://music.apple.com/ch/artist/ludovic/1854313232?l=en-GB" target="_blank" rel="noopener" class="platform-btn magnetic">
+                        <a href="https://music.apple.com/ch/artist/ludovic/1854313232?l=en-GB" target="_blank" rel="noopener noreferrer" class="platform-btn magnetic">
                             <span class="platform-icon">🎵</span>
                             <div class="platform-info">
                                 <span class="platform-name">Apple Music</span>
@@ -347,7 +347,7 @@
                                 <path d="M7 17L17 7M17 7H7M17 7V17"/>
                             </svg>
                         </a>
-                        <a href="https://open.spotify.com/artist/2G6ALmQ9WNsaqP0QsJFTJ8" target="_blank" rel="noopener" class="platform-btn magnetic">
+                        <a href="https://open.spotify.com/artist/2G6ALmQ9WNsaqP0QsJFTJ8" target="_blank" rel="noopener noreferrer" class="platform-btn magnetic">
                             <span class="platform-icon">🎧</span>
                             <div class="platform-info">
                                 <span class="platform-name">Spotify</span>
@@ -390,7 +390,7 @@
                     <div class="card-shine"></div>
                     <div class="tech-icon">🤖</div>
                     <h3 class="tech-role" data-i18n="techRole1">Chief AI Officer</h3>
-                    <a href="https://goeko.ch" target="_blank" rel="noopener" class="company-link">Goeko</a>
+                    <a href="https://goeko.ch" target="_blank" rel="noopener noreferrer" class="company-link">Goeko</a>
                     <p class="tech-desc" data-i18n="techDesc1">
                         Je gère toute la pipeline IA pour identifier les subsides et régulations environnementales par région.
                     </p>
@@ -405,7 +405,7 @@
                     <div class="card-shine"></div>
                     <div class="tech-icon">🛒</div>
                     <h3 class="tech-role" data-i18n="techRole2">Créateur</h3>
-                    <a href="https://mercheg.com" target="_blank" rel="noopener" class="company-link">mercheg.com</a>
+                    <a href="https://mercheg.com" target="_blank" rel="noopener noreferrer" class="company-link">mercheg.com</a>
                     <p class="tech-desc" data-i18n="techDesc2">
                         Boutique en ligne de l'Association d'élèves d'Émilie-Gourd.
                     </p>
@@ -461,7 +461,7 @@
                     <div class="visual-card stream-card">
                         <div class="card-glow"></div>
                         <div class="clapegrint-logo-wrapper">
-                            <img src="assets/images/clapegrint_logo.webp" alt="Clapegrint" class="clapegrint-logo" loading="lazy">
+                            <img src="assets/images/clapegrint_logo.webp" width="1024" height="1024" decoding="async" alt="Clapegrint" class="clapegrint-logo" loading="lazy">
                         </div>
                         <div class="stream-stats">
                             <div class="stat">
@@ -490,18 +490,18 @@
                     </div>
 
                     <div class="social-links">
-                        <a href="https://kick.com/clapegrint" target="_blank" rel="noopener" class="social-btn magnetic kick-btn">
-                            <img src="assets/images/Icon.webp" alt="Kick" class="btn-icon-img">
+                        <a href="https://kick.com/clapegrint" target="_blank" rel="noopener noreferrer" class="social-btn magnetic kick-btn">
+                            <img src="assets/images/Icon.webp" width="400" height="400" decoding="async" alt="Kick" class="btn-icon-img">
                             <span class="btn-label">Kick</span>
                             <span class="btn-sublabel" data-i18n="streamLives">Lives réguliers</span>
                         </a>
-                        <a href="https://www.instagram.com/clapegrint" target="_blank" rel="noopener" class="social-btn magnetic instagram-btn">
-                            <img src="assets/images/Instagram_icon.webp" alt="Instagram" class="btn-icon-img">
+                        <a href="https://www.instagram.com/clapegrint" target="_blank" rel="noopener noreferrer" class="social-btn magnetic instagram-btn">
+                            <img src="assets/images/Instagram_icon.webp" width="500" height="500" decoding="async" alt="Instagram" class="btn-icon-img">
                             <span class="btn-label">Instagram</span>
                             <span class="btn-sublabel" data-i18n="streamBehind">Behind the scenes</span>
                         </a>
-                        <a href="https://www.tiktok.com/@clapegrint" target="_blank" rel="noopener" class="social-btn magnetic tiktok-btn">
-                            <img src="assets/images/tiktok_logo.webp" alt="TikTok" class="btn-icon-img">
+                        <a href="https://www.tiktok.com/@clapegrint" target="_blank" rel="noopener noreferrer" class="social-btn magnetic tiktok-btn">
+                            <img src="assets/images/tiktok_logo.webp" width="3688" height="4167" decoding="async" alt="TikTok" class="btn-icon-img">
                             <span class="btn-label">TikTok</span>
                             <span class="btn-sublabel" data-i18n="streamClips">Clips et moments forts</span>
                         </a>
@@ -517,15 +517,15 @@
             </h2>
             <p class="social-intro" data-i18n="socialIntro">Retrouvez-moi sur les réseaux pour suivre mes projets</p>
             <div class="social-grid">
-                <a href="https://www.instagram.com/lu4ovic" target="_blank" rel="noopener" class="social-tile magnetic instagram-tile">
+                <a href="https://www.instagram.com/lu4ovic" target="_blank" rel="noopener noreferrer" class="social-tile magnetic instagram-tile">
                     <div class="tile-content">
-                        <img src="assets/images/Instagram_icon.webp" alt="Instagram" class="tile-icon-img">
+                        <img src="assets/images/Instagram_icon.webp" width="500" height="500" decoding="async" alt="Instagram" class="tile-icon-img">
                         <span class="tile-name">Instagram</span>
                         <span class="tile-handle">@lu4ovic</span>
                     </div>
                     <div class="tile-bg"></div>
                 </a>
-                <a href="https://x.com/lu4ovic" target="_blank" rel="noopener" class="social-tile magnetic x-tile">
+                <a href="https://x.com/lu4ovic" target="_blank" rel="noopener noreferrer" class="social-tile magnetic x-tile">
                     <div class="tile-content">
                         <span class="tile-icon">𝕏</span>
                         <span class="tile-name">X (Twitter)</span>
@@ -533,7 +533,7 @@
                     </div>
                     <div class="tile-bg"></div>
                 </a>
-                <a href="https://www.tiktok.com/@lu4ovic" target="_blank" rel="noopener" class="social-tile magnetic tiktok-tile">
+                <a href="https://www.tiktok.com/@lu4ovic" target="_blank" rel="noopener noreferrer" class="social-tile magnetic tiktok-tile">
                     <div class="tile-content">
                         <span class="tile-icon">🎵</span>
                         <span class="tile-name">TikTok</span>
