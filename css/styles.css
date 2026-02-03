@@ -5,21 +5,21 @@
    ============================================ */
 
 :root {
-    --color-bg: #0a0a0a;
-    --color-bg-light: #141414;
+    --color-bg: #05070b;
+    --color-bg-light: #0d1117;
     --color-text: #ffffff;
-    --color-text-muted: rgba(255, 255, 255, 0.6);
-    --color-accent: #ff6b35;
-    --color-accent-light: #ff8c5a;
-    --color-border: rgba(255, 255, 255, 0.1);
+    --color-text-muted: rgba(255, 255, 255, 0.72);
+    --color-accent: #0a84ff;
+    --color-accent-light: #64d2ff;
+    --color-border: rgba(255, 255, 255, 0.14);
     
     --font-sans: "SF Pro Display", "SF Pro Text", "Helvetica Neue", "Helvetica", "Arial", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     --font-serif: "SF Pro Display", "SF Pro Text", "Helvetica Neue", "Helvetica", "Arial", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     
-    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-    --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
-    --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-in-out-expo: cubic-bezier(0.45, 0, 0.55, 1);
+    --ease-elastic: cubic-bezier(0.2, 0.9, 0.2, 1);
+    --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
     --glass-bg: rgba(20, 20, 20, 0.45);
     --glass-border: rgba(255, 255, 255, 0.12);
 }
@@ -93,7 +93,7 @@ img {
     width: 60px;
     height: 60px;
     border-color: var(--color-accent);
-    background: rgba(255, 107, 53, 0.1);
+    background: rgba(10, 132, 255, 0.1);
 }
 
 /* Loading Screen */
@@ -148,14 +148,14 @@ img {
 
 @keyframes loadingGlow {
     0%, 100% {
-        text-shadow: 0 0 10px rgba(255, 107, 53, 0.3),
-                     0 0 20px rgba(255, 107, 53, 0.2),
-                     0 0 30px rgba(255, 107, 53, 0.1);
+        text-shadow: 0 0 10px rgba(10, 132, 255, 0.3),
+                     0 0 20px rgba(10, 132, 255, 0.2),
+                     0 0 30px rgba(10, 132, 255, 0.1);
     }
     50% {
-        text-shadow: 0 0 20px rgba(255, 107, 53, 0.6),
-                     0 0 40px rgba(255, 107, 53, 0.4),
-                     0 0 60px rgba(255, 107, 53, 0.2);
+        text-shadow: 0 0 20px rgba(10, 132, 255, 0.6),
+                     0 0 40px rgba(10, 132, 255, 0.4),
+                     0 0 60px rgba(10, 132, 255, 0.2);
     }
 }
 
@@ -174,7 +174,7 @@ img {
     animation: loadingProgress 2s var(--ease-in-out-expo) forwards;
     animation-delay: 0.5s;
     box-shadow: 0 0 10px var(--color-accent),
-                0 0 20px rgba(255, 107, 53, 0.5);
+                0 0 20px rgba(10, 132, 255, 0.5);
 }
 
 @keyframes loadingProgress {
@@ -364,7 +364,7 @@ img {
 .orb-2 {
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, #8b5cf6 0%, transparent 70%);
+    background: radial-gradient(circle, #5e5ce6 0%, transparent 70%);
     bottom: -100px;
     left: -100px;
     animation-delay: -7s;
@@ -373,7 +373,7 @@ img {
 .orb-3 {
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
+    background: radial-gradient(circle, #64d2ff 0%, transparent 70%);
     top: 50%;
     left: 30%;
     animation-delay: -14s;
@@ -381,9 +381,9 @@ img {
 
 @keyframes orbFloat {
     0%, 100% { transform: translate(0, 0) scale(1); }
-    25% { transform: translate(50px, -30px) scale(1.1); }
-    50% { transform: translate(-30px, 20px) scale(0.9); }
-    75% { transform: translate(20px, 40px) scale(1.05); }
+    25% { transform: translate(24px, -16px) scale(1.04); }
+    50% { transform: translate(-16px, 12px) scale(0.97); }
+    75% { transform: translate(12px, 18px) scale(1.02); }
 }
 
 .noise-overlay {
@@ -645,7 +645,7 @@ img {
     inset: -20% -10% -10%;
     background:
         radial-gradient(700px circle at var(--hero-mouse-x) var(--hero-mouse-y), rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0) 55%),
-        radial-gradient(500px circle at 80% 25%, rgba(255, 107, 53, 0.2) 0%, rgba(255, 107, 53, 0) 60%);
+        radial-gradient(500px circle at 80% 25%, rgba(10, 132, 255, 0.2) 0%, rgba(10, 132, 255, 0) 60%);
     pointer-events: none;
     z-index: 0;
     animation: heroBreathe 8s ease-in-out infinite;
@@ -653,7 +653,7 @@ img {
 
 @keyframes heroBreathe {
     0%, 100% { opacity: 0.8; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.03); }
+    50% { opacity: 1; transform: scale(1.015); }
 }
 
 .hero-content {
@@ -817,7 +817,7 @@ img {
 
 .btn-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+    box-shadow: 0 10px 30px rgba(10, 132, 255, 0.3);
 }
 
 .btn-primary:hover::before {
@@ -826,7 +826,7 @@ img {
 
 .btn-primary:active {
     transform: translateY(0) scale(0.98);
-    box-shadow: 0 5px 15px rgba(255, 107, 53, 0.2);
+    box-shadow: 0 5px 15px rgba(10, 132, 255, 0.2);
     transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
@@ -883,7 +883,7 @@ img {
     position: absolute;
     inset: -3px;
     border-radius: 27px;
-    background: linear-gradient(135deg, var(--color-accent), #8b5cf6, #06b6d4);
+    background: linear-gradient(135deg, var(--color-accent), #5e5ce6, #64d2ff);
     z-index: -1;
     opacity: 0.5;
     transition: opacity 0.4s ease;
@@ -911,7 +911,7 @@ img {
 .floating-badge:hover {
     transform: translateY(-15px) scale(1.05);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3),
-                0 0 20px rgba(255, 107, 53, 0.2);
+                0 0 20px rgba(10, 132, 255, 0.2);
     animation-play-state: paused;
 }
 
@@ -951,14 +951,14 @@ img {
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
     25% {
-        transform: translateY(-8px) translateX(3px) rotate(1deg);
+        transform: translateY(-4px) translateX(2px) rotate(0.5deg);
     }
     50% {
-        transform: translateY(-12px) translateX(0) rotate(0deg);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        transform: translateY(-6px) translateX(0) rotate(0deg);
+        box-shadow: 0 12px 34px rgba(0, 0, 0, 0.24);
     }
     75% {
-        transform: translateY(-6px) translateX(-3px) rotate(-1deg);
+        transform: translateY(-3px) translateX(-2px) rotate(-0.5deg);
     }
 }
 
@@ -1068,7 +1068,7 @@ img {
 .card-glow {
     position: absolute;
     inset: -2px;
-    background: linear-gradient(135deg, var(--color-accent), #8b5cf6, #06b6d4);
+    background: linear-gradient(135deg, var(--color-accent), #5e5ce6, #64d2ff);
     border-radius: 26px;
     opacity: 0;
     z-index: -1;
@@ -1079,7 +1079,7 @@ img {
 .visual-card:hover {
     transform: translateY(-10px) scale(1.015);
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5),
-                0 0 40px rgba(255, 107, 53, 0.15);
+                0 0 40px rgba(10, 132, 255, 0.15);
 }
 
 .visual-card:hover .card-glow {
@@ -1125,11 +1125,11 @@ img {
 
 .equalizer span {
     width: 6px;
-    background: linear-gradient(to top, var(--color-accent), #ff8c5a);
+    background: linear-gradient(to top, var(--color-accent), #64d2ff);
     border-radius: 3px;
     animation: equalize 0.8s ease-in-out infinite, equalizerGlow 1.6s ease-in-out infinite;
-    box-shadow: 0 0 8px rgba(255, 107, 53, 0.5),
-                0 0 16px rgba(255, 107, 53, 0.3);
+    box-shadow: 0 0 8px rgba(10, 132, 255, 0.5),
+                0 0 16px rgba(10, 132, 255, 0.3);
 }
 
 .equalizer span:nth-child(1) { height: 20px; animation-delay: 0s; }
@@ -1148,13 +1148,13 @@ img {
 
 @keyframes equalizerGlow {
     0%, 100% {
-        box-shadow: 0 0 8px rgba(255, 107, 53, 0.5),
-                    0 0 16px rgba(255, 107, 53, 0.3);
+        box-shadow: 0 0 8px rgba(10, 132, 255, 0.5),
+                    0 0 16px rgba(10, 132, 255, 0.3);
     }
     50% {
-        box-shadow: 0 0 12px rgba(255, 107, 53, 0.8),
-                    0 0 24px rgba(255, 107, 53, 0.5),
-                    0 0 36px rgba(255, 107, 53, 0.2);
+        box-shadow: 0 0 12px rgba(10, 132, 255, 0.8),
+                    0 0 24px rgba(10, 132, 255, 0.5),
+                    0 0 36px rgba(10, 132, 255, 0.2);
     }
 }
 
@@ -1230,8 +1230,8 @@ img {
 
 .genre-tag {
     padding: 0.5rem 1rem;
-    background: rgba(255, 107, 53, 0.1);
-    border: 1px solid rgba(255, 107, 53, 0.2);
+    background: rgba(10, 132, 255, 0.1);
+    border: 1px solid rgba(10, 132, 255, 0.2);
     border-radius: 100px;
     font-size: 0.875rem;
     font-weight: 500;
@@ -1341,7 +1341,7 @@ img {
 
 .release-card:hover .release-cover {
     transform: scale(1.05);
-    box-shadow: 0 8px 30px rgba(255, 107, 53, 0.3);
+    box-shadow: 0 8px 30px rgba(10, 132, 255, 0.3);
 }
 
 .vinyl-mini {
@@ -1455,7 +1455,7 @@ img {
 }
 
 .platform-btn:hover {
-    background: rgba(255, 107, 53, 0.1);
+    background: rgba(10, 132, 255, 0.1);
     border-color: var(--color-accent);
     transform: translateX(10px);
 }
@@ -1546,7 +1546,7 @@ img {
     height: 200%;
     background: radial-gradient(
         circle at 30% 30%,
-        rgba(255, 107, 53, 0.03) 0%,
+        rgba(10, 132, 255, 0.03) 0%,
         transparent 50%
     );
     animation: lightLeak 8s ease-in-out infinite;
@@ -1566,10 +1566,10 @@ img {
 
 .tech-card:hover {
     transform: translateY(-8px) scale(1.012);
-    border-color: rgba(255, 107, 53, 0.5);
+    border-color: rgba(10, 132, 255, 0.5);
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4),
-                0 0 30px rgba(255, 107, 53, 0.2),
-                inset 0 0 20px rgba(255, 107, 53, 0.05);
+                0 0 30px rgba(10, 132, 255, 0.2),
+                inset 0 0 20px rgba(10, 132, 255, 0.05);
 }
 
 .tech-card:hover .card-shine {
@@ -1578,7 +1578,7 @@ img {
 
 .tech-card:hover .tech-icon {
     transform: scale(1.1);
-    filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.5));
+    filter: drop-shadow(0 0 10px rgba(10, 132, 255, 0.5));
 }
 
 .tech-icon {
@@ -1854,19 +1854,19 @@ img {
 }
 
 .kick-btn:hover {
-    background: #53fc18;
-    border-color: #53fc18;
-    color: #000;
+    background: rgba(10, 132, 255, 0.18);
+    border-color: rgba(100, 210, 255, 0.65);
+    color: #fff;
 }
 
 .instagram-btn:hover {
-    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-    border-color: transparent;
+    background: linear-gradient(45deg, rgba(10, 132, 255, 0.32), rgba(94, 92, 230, 0.32));
+    border-color: rgba(100, 210, 255, 0.6);
 }
 
 .tiktok-btn:hover {
-    background: linear-gradient(45deg, #00f2ea, #ff0050);
-    border-color: transparent;
+    background: linear-gradient(45deg, rgba(100, 210, 255, 0.35), rgba(10, 132, 255, 0.35));
+    border-color: rgba(100, 210, 255, 0.6);
 }
 
 /* Social Section */
@@ -1955,7 +1955,7 @@ img {
 .social-tile:hover {
     transform: translateY(-10px) scale(1.02);
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4),
-                0 0 30px rgba(255, 107, 53, 0.15);
+                0 0 30px rgba(10, 132, 255, 0.15);
 }
 
 .social-tile:hover .tile-bg {
@@ -1972,11 +1972,11 @@ img {
 }
 
 .instagram-tile:hover {
-    border-color: #e6683c;
+    border-color: #64d2ff;
 }
 
 .instagram-tile:hover .tile-bg {
-    background: linear-gradient(45deg, rgba(240, 148, 51, 0.15), rgba(204, 35, 102, 0.15));
+    background: linear-gradient(45deg, rgba(10, 132, 255, 0.2), rgba(94, 92, 230, 0.2));
 }
 
 .x-tile:hover {
@@ -1988,11 +1988,11 @@ img {
 }
 
 .tiktok-tile:hover {
-    border-color: #00f2ea;
+    border-color: #64d2ff;
 }
 
 .tiktok-tile:hover .tile-bg {
-    background: linear-gradient(45deg, rgba(0, 242, 234, 0.15), rgba(255, 0, 80, 0.15));
+    background: linear-gradient(45deg, rgba(100, 210, 255, 0.2), rgba(10, 132, 255, 0.2));
 }
 
 /* Contact Section */
@@ -2043,7 +2043,7 @@ img {
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.5), transparent);
+    background: linear-gradient(90deg, transparent, rgba(10, 132, 255, 0.5), transparent);
 }
 
 .form-group {
@@ -2088,8 +2088,8 @@ img {
 .form-textarea:focus {
     outline: none;
     border-color: var(--color-accent);
-    background: rgba(255, 107, 53, 0.08);
-    box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.15), 0 0 30px rgba(255, 107, 53, 0.1);
+    background: rgba(10, 132, 255, 0.08);
+    box-shadow: 0 0 0 4px rgba(10, 132, 255, 0.15), 0 0 30px rgba(10, 132, 255, 0.1);
 }
 
 .form-input::placeholder,

@@ -302,10 +302,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
         
         function animateCursor() {
-            cursorX += (mouseX - cursorX) * 0.15;
-            cursorY += (mouseY - cursorY) * 0.15;
-            followerX += (mouseX - followerX) * 0.08;
-            followerY += (mouseY - followerY) * 0.08;
+            cursorX += (mouseX - cursorX) * 0.12;
+            cursorY += (mouseY - cursorY) * 0.12;
+            followerX += (mouseX - followerX) * 0.06;
+            followerY += (mouseY - followerY) * 0.06;
             
             cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`;
             cursorFollower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0) translate(-50%, -50%)`;
@@ -343,8 +343,8 @@ document.addEventListener('DOMContentLoaded', () => {
             let animationFrame = null;
 
             // Spring physics constants
-            const stiffness = 0.15;
-            const damping = 0.8;
+            const stiffness = 0.12;
+            const damping = 0.82;
             let velocityX = 0;
             let velocityY = 0;
 
@@ -368,8 +368,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 } else {
                     // Smooth follow with lerp
-                    currentX += (targetX - currentX) * 0.2;
-                    currentY += (targetY - currentY) * 0.2;
+                    currentX += (targetX - currentX) * 0.14;
+                    currentY += (targetY - currentY) * 0.14;
                 }
 
                 el.style.transform = `translate(${currentX}px, ${currentY}px)`;
@@ -557,7 +557,7 @@ document.addEventListener('DOMContentLoaded', () => {
             heroVisual.style.transform = `translate3d(0, ${18 * cinematicProgress}px, 0) scale(${1 - (cinematicProgress * 0.03)})`;
             heroContent.style.opacity = `${1 - (cinematicProgress * 0.25)}`;
         }
-    }, 50);
+    }, 16);
 
     window.addEventListener('scroll', handleNavScroll, { passive: true });
     handleNavScroll();
@@ -644,7 +644,7 @@ document.addEventListener('DOMContentLoaded', () => {
             wave.style.animationDuration = `${0.5 / speed}s`;
             wave.style.animationDelay = `${index * 0.05}s`;
         });
-    }, 100);
+    }, 60);
 
     window.addEventListener('scroll', handleSoundWaveScroll, { passive: true });
 
@@ -657,7 +657,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const handleMarqueeScroll = throttle(() => {
             const speed = 1 + Math.min(scrollSpeed / 50, 3);
             marqueeTrack.style.animationDuration = `${20 / speed}s`;
-        }, 100);
+        }, 60);
 
         window.addEventListener('scroll', handleMarqueeScroll, { passive: true });
     }
@@ -697,7 +697,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 const bg = tile.querySelector('.tile-bg');
                 if (bg) {
-                    bg.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255, 107, 53, 0.15), transparent 50%)`;
+                    bg.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(10, 132, 255, 0.15), transparent 50%)`;
                 }
             });
         });
