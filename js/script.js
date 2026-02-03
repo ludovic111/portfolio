@@ -410,18 +410,19 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (menuToggle && mobileMenu) {
         let previousFocusedElement = null;
-        let menuFocusTimer = null;
+        let menuFocusFrame = null;
 
         const closeMenu = () => {
-            if (menuFocusTimer) {
-                window.clearTimeout(menuFocusTimer);
-                menuFocusTimer = null;
+            if (menuFocusFrame) {
+                window.cancelAnimationFrame(menuFocusFrame);
+                menuFocusFrame = null;
             }
             menuToggle.classList.remove('active');
             mobileMenu.classList.remove('active');
             menuToggle.setAttribute('aria-expanded', 'false');
             mobileMenu.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = '';
+            document.body.classList.remove('menu-open');
             if (previousFocusedElement instanceof HTMLElement) {
                 previousFocusedElement.focus();
             }
@@ -434,12 +435,14 @@ document.addEventListener('DOMContentLoaded', () => {
             menuToggle.setAttribute('aria-expanded', 'true');
             mobileMenu.setAttribute('aria-hidden', 'false');
             document.body.style.overflow = 'hidden';
-            menuFocusTimer = window.setTimeout(() => {
+            document.body.classList.add('menu-open');
+            menuFocusFrame = window.requestAnimationFrame(() => {
                 const firstLink = mobileMenu.querySelector('.mobile-link');
                 if (firstLink instanceof HTMLElement) {
                     firstLink.focus();
                 }
-            }, prefersReducedMotion ? 0 : 160);
+                menuFocusFrame = null;
+            });
         };
 
         menuToggle.addEventListener('click', () => {
