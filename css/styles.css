@@ -64,6 +64,7 @@ img {
     mix-blend-mode: difference;
     transform: translate(-50%, -50%);
     transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease;
+    will-change: transform;
 }
 
 .cursor.hover {
@@ -83,6 +84,7 @@ img {
     z-index: 9998;
     transform: translate(-50%, -50%);
     transition: all 0.15s ease-out;
+    will-change: transform;
 }
 
 .cursor-follower.hover {
@@ -210,6 +212,7 @@ img {
     filter: blur(100px);
     opacity: 0.4;
     animation: orbFloat 20s ease-in-out infinite;
+    will-change: transform;
 }
 
 /* ============================================
@@ -832,6 +835,7 @@ img {
     border-radius: 24px;
     overflow: hidden;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    will-change: transform;
 }
 
 .headshot-img {
@@ -871,6 +875,7 @@ img {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     animation: floatBadge 4s ease-in-out infinite;
     transition: transform 0.3s var(--ease-elastic), box-shadow 0.3s ease;
+    will-change: transform;
 }
 
 .floating-badge:hover {
@@ -1025,6 +1030,7 @@ img {
     align-items: center;
     justify-content: center;
     transition: transform 0.6s var(--ease-out-expo), box-shadow 0.6s var(--ease-out-expo);
+    will-change: transform;
 }
 
 .card-glow {
@@ -1476,6 +1482,7 @@ img {
     border-radius: 24px;
     overflow: hidden;
     transition: all 0.6s var(--ease-out-expo);
+    will-change: transform;
 }
 
 .card-shine {
@@ -1856,6 +1863,7 @@ img {
     justify-content: center;
     border: 1px solid var(--color-border);
     transition: all 0.6s var(--ease-out-expo);
+    will-change: transform;
 }
 
 .tile-content {

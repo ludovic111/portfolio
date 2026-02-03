@@ -288,8 +288,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const cursor = document.querySelector('.cursor');
     const cursorFollower = document.querySelector('.cursor-follower');
     const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const enableMotionEffects = !isTouchDevice && !prefersReducedMotion;
     
-    if (!isTouchDevice && cursor && cursorFollower) {
+    if (enableMotionEffects && cursor && cursorFollower) {
         let mouseX = 0, mouseY = 0;
         let cursorX = 0, cursorY = 0;
         let followerX = 0, followerY = 0;
@@ -305,10 +307,8 @@ document.addEventListener('DOMContentLoaded', () => {
             followerX += (mouseX - followerX) * 0.08;
             followerY += (mouseY - followerY) * 0.08;
             
-            cursor.style.left = cursorX + 'px';
-            cursor.style.top = cursorY + 'px';
-            cursorFollower.style.left = followerX + 'px';
-            cursorFollower.style.top = followerY + 'px';
+            cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`;
+            cursorFollower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0) translate(-50%, -50%)`;
             
             requestAnimationFrame(animateCursor);
         }
@@ -333,7 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============================================
     const magneticElements = document.querySelectorAll('.magnetic');
 
-    if (!isTouchDevice) {
+    if (enableMotionEffects) {
         magneticElements.forEach(el => {
             let currentX = 0;
             let currentY = 0;
@@ -449,7 +449,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     setTimeout(() => {
                         entry.target.style.opacity = '1';
                         entry.target.style.transform = 'translateY(0) rotate(0deg)';
-                        entry.target.style.filter = 'blur(0)';
                     }, index * 80);
                     revealObserver.unobserve(entry.target);
                 }
@@ -462,8 +461,7 @@ document.addEventListener('DOMContentLoaded', () => {
         revealElements.forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(40px) rotate(-1deg)';
-            el.style.filter = 'blur(4px)';
-            el.style.transition = 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1)';
+            el.style.transition = 'opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)';
             revealObserver.observe(el);
         });
     }
@@ -472,61 +470,64 @@ document.addEventListener('DOMContentLoaded', () => {
     // PARALLAX EFFECTS
     // ============================================
     const orbs = document.querySelectorAll('.gradient-orb');
-    let ticking = false;
+    const floatingBadges = document.querySelectorAll('.floating-badge');
+    let orbParallaxX = 0;
+    let orbParallaxY = 0;
+    let targetOrbParallaxX = 0;
+    let targetOrbParallaxY = 0;
+    let parallaxTicking = false;
 
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            requestAnimationFrame(() => {
-                const scrollY = window.scrollY;
+    const updateParallax = () => {
+        const scrollY = window.scrollY;
+        orbParallaxX += (targetOrbParallaxX - orbParallaxX) * 0.08;
+        orbParallaxY += (targetOrbParallaxY - orbParallaxY) * 0.08;
 
-                orbs.forEach((orb, index) => {
-                    const speed = 0.1 + (index * 0.05);
-                    orb.style.transform = `translateY(${scrollY * speed}px)`;
-                });
+        orbs.forEach((orb, index) => {
+            const scrollSpeed = 0.1 + (index * 0.05);
+            const depth = 20 + (index * 15);
+            const x = orbParallaxX * depth;
+            const y = (scrollY * scrollSpeed) + (orbParallaxY * depth);
+            orb.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        });
 
-                ticking = false;
-            });
-            ticking = true;
+        floatingBadges.forEach((badge, index) => {
+            const depth = 10 + (index * 5);
+            badge.style.transform = `translate3d(${orbParallaxX * depth}px, ${orbParallaxY * depth}px, 0)`;
+        });
+
+        if (
+            Math.abs(targetOrbParallaxX - orbParallaxX) > 0.001 ||
+            Math.abs(targetOrbParallaxY - orbParallaxY) > 0.001
+        ) {
+            requestAnimationFrame(updateParallax);
+            return;
         }
-    }, { passive: true });
+
+        parallaxTicking = false;
+    };
+
+    const scheduleParallaxUpdate = () => {
+        if (prefersReducedMotion || parallaxTicking) return;
+        parallaxTicking = true;
+        requestAnimationFrame(updateParallax);
+    };
+
+    window.addEventListener('scroll', scheduleParallaxUpdate, { passive: true });
+    scheduleParallaxUpdate();
 
     // ============================================
     // MOUSE-BASED PARALLAX (Hero Section)
     // ============================================
     const hero = document.querySelector('.hero');
-    const floatingBadges = document.querySelectorAll('.floating-badge');
 
-    if (hero && !isTouchDevice) {
-        let mouseX = 0, mouseY = 0;
-        let currentX = 0, currentY = 0;
+    if (hero && enableMotionEffects) {
 
         hero.addEventListener('mousemove', (e) => {
             const rect = hero.getBoundingClientRect();
-            mouseX = (e.clientX - rect.left - rect.width / 2) / rect.width;
-            mouseY = (e.clientY - rect.top - rect.height / 2) / rect.height;
+            targetOrbParallaxX = (e.clientX - rect.left - rect.width / 2) / rect.width;
+            targetOrbParallaxY = (e.clientY - rect.top - rect.height / 2) / rect.height;
+            scheduleParallaxUpdate();
         });
-
-        function animateParallax() {
-            // Smooth easing
-            currentX += (mouseX - currentX) * 0.05;
-            currentY += (mouseY - currentY) * 0.05;
-
-            // Move orbs based on mouse position
-            orbs.forEach((orb, index) => {
-                const depth = 20 + (index * 15);
-                orb.style.transform = `translate(${currentX * depth}px, ${currentY * depth}px)`;
-            });
-
-            // Move floating badges
-            floatingBadges.forEach((badge, index) => {
-                const depth = 10 + (index * 5);
-                badge.style.transform = `translate(${currentX * depth}px, ${currentY * depth}px)`;
-            });
-
-            requestAnimationFrame(animateParallax);
-        }
-
-        animateParallax();
     }
 
     // ============================================
@@ -556,7 +557,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============================================
     const headshotFrame = document.querySelector('.headshot-frame');
     
-    if (headshotFrame && !isTouchDevice) {
+    if (headshotFrame && enableMotionEffects) {
         headshotFrame.addEventListener('mousemove', (e) => {
             const rect = headshotFrame.getBoundingClientRect();
             const x = (e.clientX - rect.left) / rect.width - 0.5;
@@ -627,7 +628,7 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollSpeed = Math.abs(window.scrollY - lastScrollY);
         lastScrollY = window.scrollY;
 
-        const speed = Math.min(scrollSpeed / 10, 2);
+        const speed = Math.max(0.35, Math.min(scrollSpeed / 10, 2));
 
         soundWaves.forEach((wave, index) => {
             wave.style.animationDuration = `${0.5 / speed}s`;
@@ -656,7 +657,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============================================
     const cards = document.querySelectorAll('.tech-card, .visual-card, .social-tile');
     
-    if (!isTouchDevice) {
+    if (enableMotionEffects) {
         cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
@@ -677,18 +678,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============================================
     const socialTiles = document.querySelectorAll('.social-tile');
     
-    socialTiles.forEach(tile => {
-        tile.addEventListener('mousemove', (e) => {
-            const rect = tile.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            const bg = tile.querySelector('.tile-bg');
-            if (bg) {
-                bg.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255, 107, 53, 0.15), transparent 50%)`;
-            }
+    if (enableMotionEffects) {
+        socialTiles.forEach(tile => {
+            tile.addEventListener('mousemove', (e) => {
+                const rect = tile.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const bg = tile.querySelector('.tile-bg');
+                if (bg) {
+                    bg.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255, 107, 53, 0.15), transparent 50%)`;
+                }
+            });
         });
-    });
+    }
 
     // ============================================
     // TEXT SCRAMBLE ON ROLE HOVER
@@ -758,7 +761,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const djImage = document.querySelector('.dj-image');
     const djCard = document.querySelector('.dj-card');
     
-    if (djCard && djImage && !isTouchDevice) {
+    if (djCard && djImage && enableMotionEffects) {
         djCard.addEventListener('mousemove', (e) => {
             const rect = djCard.getBoundingClientRect();
             const x = (e.clientX - rect.left) / rect.width - 0.5;
