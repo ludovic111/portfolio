@@ -519,6 +519,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // MOUSE-BASED PARALLAX (Hero Section)
     // ============================================
     const hero = document.querySelector('.hero');
+    const heroContent = document.querySelector('.hero-content');
+    const heroVisual = document.querySelector('.hero-visual');
 
     if (hero && enableMotionEffects) {
 
@@ -526,7 +528,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const rect = hero.getBoundingClientRect();
             targetOrbParallaxX = (e.clientX - rect.left - rect.width / 2) / rect.width;
             targetOrbParallaxY = (e.clientY - rect.top - rect.height / 2) / rect.height;
+            hero.style.setProperty('--hero-mouse-x', `${((e.clientX - rect.left) / rect.width) * 100}%`);
+            hero.style.setProperty('--hero-mouse-y', `${((e.clientY - rect.top) / rect.height) * 100}%`);
             scheduleParallaxUpdate();
+        });
+
+        hero.addEventListener('mouseleave', () => {
+            hero.style.setProperty('--hero-mouse-x', '65%');
+            hero.style.setProperty('--hero-mouse-y', '35%');
         });
     }
 
@@ -534,23 +543,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // NAVBAR VISIBILITY (throttled for performance)
     // ============================================
     const nav = document.querySelector('.nav');
-    let lastScroll = 0;
 
     const handleNavScroll = throttle(() => {
         const currentScroll = window.scrollY;
 
-        if (currentScroll > 100) {
-            nav.style.background = 'rgba(10, 10, 10, 0.8)';
-            nav.style.backdropFilter = 'blur(20px)';
-        } else {
-            nav.style.background = 'transparent';
-            nav.style.backdropFilter = 'none';
+        if (nav) {
+            nav.classList.toggle('scrolled', currentScroll > 24);
         }
 
-        lastScroll = currentScroll;
+        if (heroContent && heroVisual && !prefersReducedMotion) {
+            const cinematicProgress = Math.min(currentScroll / (window.innerHeight * 0.9), 1);
+            heroContent.style.transform = `translate3d(0, ${-28 * cinematicProgress}px, 0)`;
+            heroVisual.style.transform = `translate3d(0, ${18 * cinematicProgress}px, 0) scale(${1 - (cinematicProgress * 0.03)})`;
+            heroContent.style.opacity = `${1 - (cinematicProgress * 0.25)}`;
+        }
     }, 50);
 
     window.addEventListener('scroll', handleNavScroll, { passive: true });
+    handleNavScroll();
 
     // ============================================
     // HEADSHOT TILT EFFECT
