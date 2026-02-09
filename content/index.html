@@ -435,41 +435,12 @@
                 <p class="contact-intro" data-i18n="contactIntro">
                     Pour toute demande professionnelle
                 </p>
-                <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form">
-                    <input type="hidden" name="form-name" value="contact">
-                    <p class="hidden" style="display:none;">
-                        <label>Don't fill this out: <input name="bot-field"></label>
-                    </p>
-                    <div class="form-group">
-                        <label for="name" class="form-label" data-i18n="formName">Nom</label>
-                        <input type="text" id="name" name="name" required class="form-input" data-i18n="formNamePlaceholder" placeholder="Votre nom">
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="form-label" data-i18n="formEmail">Email</label>
-                        <input type="email" id="email" name="email" required class="form-input" data-i18n="formEmailPlaceholder" placeholder="votre@email.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="subject" class="form-label" data-i18n="formSubject">Sujet</label>
-                        <select id="subject" name="subject" required class="form-select">
-                            <option value="" disabled selected data-i18n="formSubjectPlaceholder">Choisir un sujet</option>
-                            <option value="dj-booking" data-i18n="contactType1">Booking DJ</option>
-                            <option value="creative-collab" data-i18n="contactType2">Collaborations créatives</option>
-                            <option value="tech-ai" data-i18n="contactType3">Projets tech & IA</option>
-                            <option value="streaming" data-i18n="contactType4">Partenariats streaming</option>
-                            <option value="other" data-i18n="formSubjectOther">Autre</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message" class="form-label" data-i18n="formMessage">Message</label>
-                        <textarea id="message" name="message" required class="form-textarea" rows="5" data-i18n="formMessagePlaceholder" placeholder="Votre message..."></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary magnetic form-submit">
-                        <span class="btn-text" data-i18n="formSend">Envoyer</span>
-                        <svg class="btn-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
-                        </svg>
-                    </button>
-                </form>
+                <a href="mailto:lmariecontact@proton.me" class="btn btn-primary">
+                    <span class="btn-text" data-i18n="formSend">Envoyer un email</span>
+                    <svg class="btn-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                    </svg>
+                </a>
             </div>
             <div class="footer-marquee">
                 <div class="marquee-track">

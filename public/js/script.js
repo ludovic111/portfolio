@@ -103,7 +103,7 @@ const translations = {
         formSubjectOther: "Autre",
         formMessage: "Message",
         formMessagePlaceholder: "Votre message...",
-        formSend: "Envoyer",
+        formSend: "Envoyer un email",
 
         // Footer
         footerText: "© 2026 Ludovic — DJ · Artiste · Chief AI Officer"
@@ -204,7 +204,7 @@ const translations = {
         formSubjectOther: "Other",
         formMessage: "Message",
         formMessagePlaceholder: "Your message...",
-        formSend: "Send",
+        formSend: "Send an email",
 
         // Footer
         footerText: "© 2026 Ludovic — DJ · Artist · Chief AI Officer"
