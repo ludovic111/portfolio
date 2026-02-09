@@ -267,7 +267,12 @@ function throttle(func, limit) {
     };
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+let appBootstrapped = false;
+
+function initPortfolioApp() {
+    if (appBootstrapped) return;
+    appBootstrapped = true;
+
     // Initialize language system
     initLanguage();
     const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
@@ -998,4 +1003,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     console.log('🎵 Ludovic portfolio loaded with stunning animations!');
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPortfolioApp, { once: true });
+} else {
+    initPortfolioApp();
+}
