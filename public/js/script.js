@@ -278,15 +278,30 @@ document.addEventListener('DOMContentLoaded', () => {
     // LOADING SCREEN
     // ============================================
     const loadingScreen = document.querySelector('.loading-screen');
-    
+    let appInitialized = false;
+
+    function finalizeLoading() {
+        if (appInitialized) return;
+        appInitialized = true;
+
+        if (loadingScreen) {
+            loadingScreen.classList.add('hidden');
+        }
+
+        initAnimations();
+    }
+
     window.addEventListener('load', () => {
-        window.setTimeout(() => {
-            if (loadingScreen) {
-                loadingScreen.classList.add('hidden');
-            }
-            initAnimations();
-        }, prefersReducedMotion ? 0 : 120);
+        window.setTimeout(finalizeLoading, prefersReducedMotion ? 0 : 120);
     });
+
+    // In some deployments the script can attach after the load event already fired.
+    if (document.readyState === 'complete') {
+        window.setTimeout(finalizeLoading, 0);
+    }
+
+    // Safety net: never leave users blocked on the loading screen.
+    window.setTimeout(finalizeLoading, 2600);
 
     // ============================================
     // CUSTOM CURSOR
