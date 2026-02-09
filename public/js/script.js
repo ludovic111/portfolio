@@ -1,6 +1,6 @@
 /**
- * LUDOVIC — Stunning Portfolio Interactions
- * DJ · Artiste · Chief AI Officer
+ * LUDOVIC — Portfolio Interactions
+ * Simplified for National Design Studio aesthetic
  */
 
 // ============================================
@@ -211,6 +211,9 @@ const translations = {
     }
 };
 
+// ============================================
+// LANGUAGE HANDLING
+// ============================================
 function getStoredLanguage() {
     try {
         return window.localStorage.getItem('portfolioLang');
@@ -223,21 +226,18 @@ function setStoredLanguage(lang) {
     try {
         window.localStorage.setItem('portfolioLang', lang);
     } catch (_) {
-        // Ignore storage errors in strict privacy contexts.
+        // Ignore storage errors
     }
 }
 
-// Current language state
 let currentLang = getStoredLanguage() ||
     ((navigator.language || '').startsWith('fr') ? 'fr' : 'en');
 
-// Function to update all text content
 function setLanguage(lang) {
     currentLang = lang;
     setStoredLanguage(lang);
     document.documentElement.lang = lang;
 
-    // Update all elements with data-i18n attribute
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (translations[lang][key]) {
@@ -251,17 +251,14 @@ function setLanguage(lang) {
         }
     });
 
-    // Update toggle buttons active state
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.lang === lang);
     });
 }
 
-// Initialize language on page load
 function initLanguage() {
     setLanguage(currentLang);
 
-    // Language toggle click handlers
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             setLanguage(btn.dataset.lang);
@@ -270,24 +267,15 @@ function initLanguage() {
 }
 
 // ============================================
-// PERFORMANCE UTILITIES
+// MAIN APP
 // ============================================
-function throttle(func, limit) {
-    let inThrottle;
-    return function(...args) {
-        if (!inThrottle) {
-            func.apply(this, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    };
-}
-
 let appBootstrapped = false;
 
 function initPortfolioApp() {
     if (appBootstrapped) return;
     appBootstrapped = true;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // ============================================
     // LOADING SCREEN
@@ -307,139 +295,21 @@ function initPortfolioApp() {
     }
 
     window.addEventListener('load', () => {
-        window.setTimeout(finalizeLoading, prefersReducedMotion ? 0 : 120);
+        window.setTimeout(finalizeLoading, prefersReducedMotion ? 0 : 100);
     });
 
-    // In some deployments the script can attach after the load event already fired.
     if (document.readyState === 'complete') {
         window.setTimeout(finalizeLoading, 0);
     }
 
-    // Safety net: never leave users blocked on the loading screen.
-    window.setTimeout(finalizeLoading, 2600);
+    // Safety timeout
+    window.setTimeout(finalizeLoading, 2000);
 
-    // Initialize language system
+    // Initialize language
     try {
         initLanguage();
     } catch (err) {
         console.warn('Language initialization failed:', err);
-    }
-
-    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const enableMotionEffects = !isTouchDevice && !prefersReducedMotion;
-
-    // ============================================
-    // CUSTOM CURSOR
-    // ============================================
-    const cursor = document.querySelector('.cursor');
-    const cursorFollower = document.querySelector('.cursor-follower');
-    
-    if (enableMotionEffects && cursor && cursorFollower) {
-        document.body.classList.add('has-custom-cursor');
-        let mouseX = 0, mouseY = 0;
-        let cursorX = 0, cursorY = 0;
-        let followerX = 0, followerY = 0;
-        
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        }, { passive: true });
-        
-        function animateCursor() {
-            cursorX += (mouseX - cursorX) * 0.2;
-            cursorY += (mouseY - cursorY) * 0.2;
-            followerX += (mouseX - followerX) * 0.14;
-            followerY += (mouseY - followerY) * 0.14;
-            
-            cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`;
-            cursorFollower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0) translate(-50%, -50%)`;
-            
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-        
-        // Hover effects
-        const hoverElements = document.querySelectorAll('a, button, .magnetic, .visual-card, .tech-card, .social-tile, .genre-tag');
-        hoverElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.classList.add('hover');
-                cursorFollower.classList.add('hover');
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.classList.remove('hover');
-                cursorFollower.classList.remove('hover');
-            });
-        });
-    }
-
-    // ============================================
-    // MAGNETIC EFFECT WITH SPRING PHYSICS
-    // ============================================
-    const magneticElements = document.querySelectorAll('.magnetic');
-
-    if (enableMotionEffects) {
-        magneticElements.forEach(el => {
-            let currentX = 0;
-            let currentY = 0;
-            let targetX = 0;
-            let targetY = 0;
-            let isHovering = false;
-            let animationFrame = null;
-
-            // Spring physics constants
-            const stiffness = 0.12;
-            const damping = 0.82;
-            let velocityX = 0;
-            let velocityY = 0;
-
-            const animateMagnetic = () => {
-                if (!isHovering) {
-                    // Spring back to center with elastic effect
-                    const forceX = -currentX * stiffness;
-                    const forceY = -currentY * stiffness;
-                    velocityX = (velocityX + forceX) * damping;
-                    velocityY = (velocityY + forceY) * damping;
-                    currentX += velocityX;
-                    currentY += velocityY;
-
-                    // Stop animation when close enough to center
-                    if (Math.abs(currentX) < 0.1 && Math.abs(currentY) < 0.1 &&
-                        Math.abs(velocityX) < 0.1 && Math.abs(velocityY) < 0.1) {
-                        currentX = 0;
-                        currentY = 0;
-                        el.style.transform = 'translate(0, 0)';
-                        return;
-                    }
-                } else {
-                    // Smooth follow with lerp
-                    currentX += (targetX - currentX) * 0.14;
-                    currentY += (targetY - currentY) * 0.14;
-                }
-
-                el.style.transform = `translate(${currentX}px, ${currentY}px)`;
-                animationFrame = requestAnimationFrame(animateMagnetic);
-            };
-
-            el.addEventListener('mousemove', (e) => {
-                const rect = el.getBoundingClientRect();
-                targetX = (e.clientX - rect.left - rect.width / 2) * 0.3;
-                targetY = (e.clientY - rect.top - rect.height / 2) * 0.3;
-
-                if (!isHovering) {
-                    isHovering = true;
-                    velocityX = 0;
-                    velocityY = 0;
-                    if (animationFrame) cancelAnimationFrame(animationFrame);
-                    animateMagnetic();
-                }
-            });
-
-            el.addEventListener('mouseleave', () => {
-                isHovering = false;
-                // Animation continues with spring physics to return to center
-            });
-        });
     }
 
     // ============================================
@@ -448,42 +318,22 @@ function initPortfolioApp() {
     const menuToggle = document.querySelector('.menu-toggle');
     const mobileMenu = document.querySelector('.mobile-menu');
     const mobileLinks = document.querySelectorAll('.mobile-link');
-    
-    if (menuToggle && mobileMenu) {
-        let previousFocusedElement = null;
-        let menuFocusFrame = null;
 
+    if (menuToggle && mobileMenu) {
         const closeMenu = () => {
-            if (menuFocusFrame) {
-                window.cancelAnimationFrame(menuFocusFrame);
-                menuFocusFrame = null;
-            }
             menuToggle.classList.remove('active');
             mobileMenu.classList.remove('active');
             menuToggle.setAttribute('aria-expanded', 'false');
             mobileMenu.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = '';
-            document.body.classList.remove('menu-open');
-            if (previousFocusedElement instanceof HTMLElement) {
-                previousFocusedElement.focus();
-            }
         };
 
         const openMenu = () => {
-            previousFocusedElement = document.activeElement;
             menuToggle.classList.add('active');
             mobileMenu.classList.add('active');
             menuToggle.setAttribute('aria-expanded', 'true');
             mobileMenu.setAttribute('aria-hidden', 'false');
             document.body.style.overflow = 'hidden';
-            document.body.classList.add('menu-open');
-            menuFocusFrame = window.requestAnimationFrame(() => {
-                const firstLink = mobileMenu.querySelector('.mobile-link');
-                if (firstLink instanceof HTMLElement) {
-                    firstLink.focus();
-                }
-                menuFocusFrame = null;
-            });
         };
 
         menuToggle.addEventListener('click', () => {
@@ -493,43 +343,14 @@ function initPortfolioApp() {
                 openMenu();
             }
         });
-        
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                closeMenu();
-            });
-        });
 
-        mobileMenu.addEventListener('click', (event) => {
-            if (event.target.classList.contains('mobile-menu-bg')) {
-                closeMenu();
-            }
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
         });
 
         document.addEventListener('keydown', (event) => {
-            if (!mobileMenu.classList.contains('active')) return;
-
-            if (event.key === 'Escape') {
-                event.preventDefault();
+            if (event.key === 'Escape' && mobileMenu.classList.contains('active')) {
                 closeMenu();
-                return;
-            }
-
-            if (event.key !== 'Tab') return;
-            const focusableEls = mobileMenu.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])');
-            const focusable = Array.from(focusableEls).filter((el) => !el.hasAttribute('disabled'));
-            if (!focusable.length) return;
-
-            const first = focusable[0];
-            const last = focusable[focusable.length - 1];
-            const active = document.activeElement;
-
-            if (event.shiftKey && active === first) {
-                event.preventDefault();
-                last.focus();
-            } else if (!event.shiftKey && active === last) {
-                event.preventDefault();
-                first.focus();
             }
         });
     }
@@ -561,18 +382,18 @@ function initPortfolioApp() {
     });
 
     // ============================================
-    // SCROLL REVEAL ANIMATIONS (Enhanced with blur)
+    // SCROLL REVEAL (Simple opacity fade)
     // ============================================
     function initAnimations() {
-        const revealElements = document.querySelectorAll('.section-title, .section-desc, .section-visual, .tech-card, .social-tile, .platform-btn, .social-btn, .subsection, .equipment-section, .discography');
+        const revealElements = document.querySelectorAll(
+            '.section-title, .section-desc, .section-visual, .tech-card, .social-tile, .social-btn, .subsection, .equipment-section'
+        );
 
         const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
+            entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0) rotate(0deg)';
-                    }, index * 80);
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                     revealObserver.unobserve(entry.target);
                 }
             });
@@ -583,449 +404,51 @@ function initPortfolioApp() {
 
         revealElements.forEach(el => {
             el.style.opacity = '0';
-            el.style.transform = 'translateY(40px) rotate(-1deg)';
-            el.style.transition = 'opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             revealObserver.observe(el);
         });
     }
 
     // ============================================
-    // PARALLAX EFFECTS
-    // ============================================
-    const orbs = document.querySelectorAll('.gradient-orb');
-    const floatingBadges = document.querySelectorAll('.floating-badge');
-    let orbParallaxX = 0;
-    let orbParallaxY = 0;
-    let targetOrbParallaxX = 0;
-    let targetOrbParallaxY = 0;
-    let parallaxTicking = false;
-
-    const updateParallax = () => {
-        const scrollY = window.scrollY;
-        orbParallaxX += (targetOrbParallaxX - orbParallaxX) * 0.08;
-        orbParallaxY += (targetOrbParallaxY - orbParallaxY) * 0.08;
-
-        orbs.forEach((orb, index) => {
-            const scrollSpeed = 0.1 + (index * 0.05);
-            const depth = 20 + (index * 15);
-            const x = orbParallaxX * depth;
-            const y = (scrollY * scrollSpeed) + (orbParallaxY * depth);
-            orb.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-        });
-
-        floatingBadges.forEach((badge, index) => {
-            const depth = 10 + (index * 5);
-            badge.style.transform = `translate3d(${orbParallaxX * depth}px, ${orbParallaxY * depth}px, 0)`;
-        });
-
-        if (
-            Math.abs(targetOrbParallaxX - orbParallaxX) > 0.001 ||
-            Math.abs(targetOrbParallaxY - orbParallaxY) > 0.001
-        ) {
-            requestAnimationFrame(updateParallax);
-            return;
-        }
-
-        parallaxTicking = false;
-    };
-
-    const scheduleParallaxUpdate = () => {
-        if (prefersReducedMotion || parallaxTicking) return;
-        parallaxTicking = true;
-        requestAnimationFrame(updateParallax);
-    };
-
-    window.addEventListener('scroll', scheduleParallaxUpdate, { passive: true });
-    scheduleParallaxUpdate();
-
-    // ============================================
-    // MOUSE-BASED PARALLAX (Hero Section)
-    // ============================================
-    const hero = document.querySelector('.hero');
-    const heroContent = document.querySelector('.hero-content');
-    const heroVisual = document.querySelector('.hero-visual');
-
-    if (hero && enableMotionEffects) {
-
-        hero.addEventListener('mousemove', (e) => {
-            const rect = hero.getBoundingClientRect();
-            targetOrbParallaxX = (e.clientX - rect.left - rect.width / 2) / rect.width;
-            targetOrbParallaxY = (e.clientY - rect.top - rect.height / 2) / rect.height;
-            hero.style.setProperty('--hero-mouse-x', `${((e.clientX - rect.left) / rect.width) * 100}%`);
-            hero.style.setProperty('--hero-mouse-y', `${((e.clientY - rect.top) / rect.height) * 100}%`);
-            scheduleParallaxUpdate();
-        });
-
-        hero.addEventListener('mouseleave', () => {
-            hero.style.setProperty('--hero-mouse-x', '65%');
-            hero.style.setProperty('--hero-mouse-y', '35%');
-        });
-    }
-
-    // ============================================
-    // NAVBAR VISIBILITY (throttled for performance)
+    // NAVIGATION SCROLL STATE
     // ============================================
     const nav = document.querySelector('.nav');
 
-    const handleNavScroll = throttle(() => {
-        const currentScroll = window.scrollY;
-
-        if (nav) {
-            nav.classList.toggle('scrolled', currentScroll > 24);
+    let ticking = false;
+    const handleNavScroll = () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                if (nav) {
+                    nav.classList.toggle('scrolled', window.scrollY > 24);
+                }
+                ticking = false;
+            });
+            ticking = true;
         }
-
-        if (heroContent && heroVisual && !prefersReducedMotion) {
-            const cinematicProgress = Math.min(currentScroll / (window.innerHeight * 0.9), 1);
-            heroContent.style.transform = `translate3d(0, ${-28 * cinematicProgress}px, 0)`;
-            heroVisual.style.transform = `translate3d(0, ${18 * cinematicProgress}px, 0) scale(${1 - (cinematicProgress * 0.03)})`;
-            heroContent.style.opacity = `${1 - (cinematicProgress * 0.25)}`;
-        }
-    }, 16);
+    };
 
     window.addEventListener('scroll', handleNavScroll, { passive: true });
     handleNavScroll();
 
     // ============================================
-    // HEADSHOT TILT EFFECT
-    // ============================================
-    const headshotFrame = document.querySelector('.headshot-frame');
-    
-    if (headshotFrame && enableMotionEffects) {
-        headshotFrame.addEventListener('mousemove', (e) => {
-            const rect = headshotFrame.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width - 0.5;
-            const y = (e.clientY - rect.top) / rect.height - 0.5;
-            
-            headshotFrame.style.transform = `perspective(1000px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg)`;
-        });
-        
-        headshotFrame.addEventListener('mouseleave', () => {
-            headshotFrame.style.transform = 'perspective(1000px) rotateY(0) rotateX(0)';
-        });
-    }
-
-    // ============================================
-    // GLITCH TEXT EFFECT
-    // ============================================
-    const glitchElements = document.querySelectorAll('.section-title .title-text');
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-    
-    glitchElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            const originalText = el.textContent;
-            let iterations = 0;
-            
-            const interval = setInterval(() => {
-                el.textContent = originalText
-                    .split('')
-                    .map((char, index) => {
-                        if (index < iterations) {
-                            return originalText[index];
-                        }
-                        return chars[Math.floor(Math.random() * chars.length)];
-                    })
-                    .join('');
-                
-                iterations += 1/3;
-                
-                if (iterations >= originalText.length) {
-                    clearInterval(interval);
-                    el.textContent = originalText;
-                }
-            }, 30);
-        });
-    });
-
-    // ============================================
     // BACK TO TOP
     // ============================================
     const backToTop = document.querySelector('.back-to-top');
-    
+
     if (backToTop) {
         backToTop.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
-                behavior: 'smooth'
+                behavior: prefersReducedMotion ? 'auto' : 'smooth'
             });
         });
     }
 
-    // ============================================
-    // SOUND WAVE AMPLIFICATION ON SCROLL (throttled)
-    // ============================================
-    const soundWaves = document.querySelectorAll('.equalizer span');
-    let scrollSpeed = 0;
-    let lastScrollY = window.scrollY;
-
-    const handleSoundWaveScroll = throttle(() => {
-        scrollSpeed = Math.abs(window.scrollY - lastScrollY);
-        lastScrollY = window.scrollY;
-
-        const speed = Math.max(0.35, Math.min(scrollSpeed / 10, 2));
-
-        soundWaves.forEach((wave, index) => {
-            wave.style.animationDuration = `${0.5 / speed}s`;
-            wave.style.animationDelay = `${index * 0.05}s`;
-        });
-    }, 60);
-
-    window.addEventListener('scroll', handleSoundWaveScroll, { passive: true });
-
-    // ============================================
-    // MARQUEE SPEED BASED ON SCROLL (throttled)
-    // ============================================
-    const marqueeTrack = document.querySelector('.marquee-track');
-
-    if (marqueeTrack) {
-        const handleMarqueeScroll = throttle(() => {
-            const speed = 1 + Math.min(scrollSpeed / 50, 3);
-            marqueeTrack.style.animationDuration = `${20 / speed}s`;
-        }, 60);
-
-        window.addEventListener('scroll', handleMarqueeScroll, { passive: true });
-    }
-
-    // ============================================
-    // CARD 3D TILT EFFECT
-    // ============================================
-    const cards = document.querySelectorAll('.tech-card, .visual-card, .social-tile');
-    
-    if (enableMotionEffects) {
-        cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = (e.clientX - rect.left) / rect.width - 0.5;
-                const y = (e.clientY - rect.top) / rect.height - 0.5;
-                
-                card.style.transform = `perspective(1000px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) translateY(-5px)`;
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateY(0) rotateX(0)';
-            });
-        });
-    }
-
-    // ============================================
-    // SOCIAL TILE INTERACTION
-    // ============================================
-    const socialTiles = document.querySelectorAll('.social-tile');
-    
-    if (enableMotionEffects) {
-        socialTiles.forEach(tile => {
-            tile.addEventListener('mousemove', (e) => {
-                const rect = tile.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const bg = tile.querySelector('.tile-bg');
-                if (bg) {
-                    bg.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(10, 132, 255, 0.15), transparent 50%)`;
-                }
-            });
-        });
-    }
-
-    // ============================================
-    // TEXT SCRAMBLE ON ROLE HOVER
-    // ============================================
-    const roles = document.querySelectorAll('.role');
-    
-    roles.forEach(role => {
-        const originalText = role.textContent;
-        
-        role.addEventListener('mouseenter', () => {
-            let iterations = 0;
-            const interval = setInterval(() => {
-                role.textContent = originalText
-                    .split('')
-                    .map((char, index) => {
-                        if (index < iterations) return originalText[index];
-                        return chars[Math.floor(Math.random() * chars.length)];
-                    })
-                    .join('');
-                
-                iterations += 1/2;
-                if (iterations >= originalText.length) {
-                    clearInterval(interval);
-                    role.textContent = originalText;
-                }
-            }, 50);
-        });
-    });
-
-    // ============================================
-    // SMOOTH SECTION TRANSITIONS
-    // ============================================
-    const sections = document.querySelectorAll('.section');
-    
-    const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-            }
-        });
-    }, { threshold: 0.1 });
-    
-    sections.forEach(section => {
-        section.style.opacity = '0.9';
-        section.style.transition = 'opacity 0.5s ease';
-        sectionObserver.observe(section);
-    });
-
-    // ============================================
-    // HEADSHOT IMAGE REVEAL
-    // ============================================
-    const headshotImg = document.querySelector('.headshot-img');
-    if (headshotImg) {
-        headshotImg.style.opacity = '0';
-        headshotImg.style.transform = 'scale(1.1)';
-        headshotImg.style.transition = 'all 1s var(--ease-out-expo)';
-        
-        setTimeout(() => {
-            headshotImg.style.opacity = '1';
-            headshotImg.style.transform = 'scale(1)';
-        }, 1000);
-    }
-
-    // ============================================
-    // DJ IMAGE PARALLAX
-    // ============================================
-    const djImage = document.querySelector('.dj-image');
-    const djCard = document.querySelector('.dj-card');
-    
-    if (djCard && djImage && enableMotionEffects) {
-        djCard.addEventListener('mousemove', (e) => {
-            const rect = djCard.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width - 0.5;
-            const y = (e.clientY - rect.top) / rect.height - 0.5;
-            
-            djImage.style.transform = `scale(1.1) translate(${x * 20}px, ${y * 20}px)`;
-        });
-        
-        djCard.addEventListener('mouseleave', () => {
-            djImage.style.transform = 'scale(1)';
-        });
-    }
-
-    // ============================================
-    // CUSTOM AUDIO PLAYER
-    // ============================================
-    const audioPlayer = document.getElementById('audio-player');
-    const mainPlayBtn = document.getElementById('main-play-btn');
-    const overlayPlayBtn = document.querySelector('.play-overlay-btn');
-    const progressContainer = document.querySelector('.progress-container');
-    const progressFill = document.querySelector('.progress-fill');
-    const currentTimeEl = document.querySelector('.current-time');
-    const durationEl = document.querySelector('.duration');
-    const muteBtn = document.getElementById('mute-btn');
-    
-    // Only init if player exists
-    if (audioPlayer && mainPlayBtn && progressContainer) {
-        let isPlaying = false;
-        
-        // Toggle Play/Pause
-        function togglePlay() {
-            if (isPlaying) {
-                audioPlayer.pause();
-            } else {
-                audioPlayer.play();
-            }
-        }
-        
-        function updatePlayIcons(playing) {
-            isPlaying = playing;
-            const icons = [mainPlayBtn, overlayPlayBtn];
-            
-            icons.forEach(btn => {
-                const playIcon = btn.querySelector('.play-icon');
-                const pauseIcon = btn.querySelector('.pause-icon');
-                if (playIcon && pauseIcon) {
-                    if (playing) {
-                        playIcon.classList.add('hidden');
-                        pauseIcon.classList.remove('hidden');
-                    } else {
-                        playIcon.classList.remove('hidden');
-                        pauseIcon.classList.add('hidden');
-                    }
-                }
-            });
-
-            // Also animate the vinyl cover if playing
-            const vinylCover = document.querySelector('.release-cover');
-            if (vinylCover) {
-                if (playing) {
-                    vinylCover.style.animation = 'spin 8s linear infinite';
-                } else {
-                    vinylCover.style.animation = 'none';
-                    // Optional: could pause animation at current rotation, but none is simpler
-                }
-            }
-        }
-        
-        mainPlayBtn.addEventListener('click', togglePlay);
-        if (overlayPlayBtn) overlayPlayBtn.addEventListener('click', togglePlay);
-        
-        audioPlayer.addEventListener('play', () => updatePlayIcons(true));
-        audioPlayer.addEventListener('pause', () => updatePlayIcons(false));
-        
-        // Time Update
-        audioPlayer.addEventListener('timeupdate', (e) => {
-            const player = e.currentTarget;
-            if (!(player instanceof HTMLAudioElement)) return;
-            const { duration, currentTime } = player;
-            const progressPercent = duration ? (currentTime / duration) * 100 : 0;
-            progressFill.style.width = `${progressPercent}%`;
-            
-            // Format Time
-             const formatTime = (time) => {
-                if (isNaN(time)) return "0:00";
-                const minutes = Math.floor(time / 60);
-                const seconds = Math.floor(time % 60);
-                return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-            };
-            
-            currentTimeEl.textContent = formatTime(currentTime);
-            // Avoid NaN duration
-            if (duration) {
-                durationEl.textContent = formatTime(duration);
-            }
-        });
-        
-        // Click on progress bar
-        progressContainer.addEventListener('click', (e) => {
-            const width = progressContainer.clientWidth;
-            const clickX = e.offsetX;
-            const duration = audioPlayer.duration;
-            
-            audioPlayer.currentTime = (clickX / width) * duration;
-        });
-        
-        // Mute
-        muteBtn.addEventListener('click', () => {
-            audioPlayer.muted = !audioPlayer.muted;
-            const iconPath = muteBtn.querySelector('path');
-            // Simple visual toggle for mute (or could swap icons)
-            if (audioPlayer.muted) {
-                muteBtn.style.opacity = '0.5';
-                iconPath.setAttribute('d', 'M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6'); // Strike through or x
-            } else {
-                muteBtn.style.opacity = '1';
-                iconPath.setAttribute('d', 'M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 0 1 0 7.07'); // Normal volume
-            }
-        });
-
-        // Song End
-        audioPlayer.addEventListener('ended', () => {
-            updatePlayIcons(false);
-            audioPlayer.currentTime = 0;
-            progressFill.style.width = '0%';
-        });
-    }
-
-    console.log('🎵 Ludovic portfolio loaded with stunning animations!');
+    console.log('Portfolio loaded');
 }
 
+// Initialize
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initPortfolioApp, { once: true });
 } else {
