@@ -24,7 +24,7 @@
     --space-md: 2rem;
     --space-lg: 4rem;
     --space-xl: 6rem;
-    --space-section: clamp(80px, 12vh, 120px);
+    --space-section: clamp(100px, 15vh, 160px);
 
     /* Transitions */
     --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -192,9 +192,10 @@ img {
 
 .nav.scrolled {
     background: rgba(250, 250, 250, 0.95);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--color-border);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
 .nav-brand {
@@ -442,12 +443,15 @@ img {
 
 .hero-title {
     font-family: var(--font-serif);
-    font-size: clamp(3.5rem, 12vw, 8rem);
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    line-height: 1;
+    font-size: clamp(4.5rem, 15vw, 12rem);
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
     margin-bottom: var(--space-md);
-    color: var(--color-text);
+    background: linear-gradient(180deg, #1a1a1a 0%, #666666 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
     opacity: 0;
     animation: fadeIn 0.8s ease 0.5s forwards;
 }
@@ -559,16 +563,16 @@ img {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 1rem 2rem;
+    padding: 1.125rem 2.5rem;
     font-family: var(--font-sans);
     font-size: 0.875rem;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.02em;
     text-decoration: none;
     border: 1px solid var(--color-text);
-    border-radius: 0;
+    border-radius: 12px;
     cursor: pointer;
-    transition: all var(--duration-normal) var(--ease-smooth);
+    transition: all 0.4s var(--ease-smooth);
     position: relative;
     background: transparent;
     color: var(--color-text);
@@ -582,6 +586,8 @@ img {
 .btn:hover {
     background: var(--color-text);
     color: var(--color-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .btn-primary:hover {
@@ -719,10 +725,17 @@ img {
 .visual-card {
     position: relative;
     aspect-ratio: 4/5;
-    border-radius: 4px;
+    border-radius: 20px;
     overflow: hidden;
     border: 1px solid var(--color-border);
     background: var(--color-bg-alt);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.5s var(--ease-smooth);
+}
+
+.visual-card:hover {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
 }
 
 .card-glow {
@@ -740,11 +753,12 @@ img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s var(--ease-smooth);
+    transition: transform 0.6s var(--ease-smooth), filter 0.6s var(--ease-smooth);
 }
 
 .visual-card:hover .dj-image {
-    transform: scale(1.02);
+    transform: scale(1.05);
+    filter: brightness(1.03);
 }
 
 .dj-overlay,
@@ -796,6 +810,7 @@ img {
     background: var(--color-text);
     color: var(--color-bg);
     border-color: var(--color-text);
+    transform: translateY(-2px);
 }
 
 /* Experience List */
@@ -826,6 +841,7 @@ img {
     padding: var(--space-md);
     background: var(--color-bg-alt);
     border: 1px solid var(--color-border);
+    border-radius: 16px;
 }
 
 .equipment-items {
@@ -886,11 +902,15 @@ img {
     padding: var(--space-lg);
     background: var(--color-bg-alt);
     border: 1px solid var(--color-border);
-    transition: border-color var(--duration-normal) var(--ease-smooth);
+    border-radius: 20px;
+    transition: all 0.4s var(--ease-smooth);
 }
 
 .tech-card:hover {
-    border-color: var(--color-text);
+    border-color: var(--color-border);
+    background: #ffffff;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
 }
 
 .card-shine {
@@ -1003,6 +1023,7 @@ img {
     background: var(--color-text);
     color: var(--color-bg);
     border-color: var(--color-text);
+    transform: translateY(-2px);
 }
 
 /* Philosophy */
@@ -1101,6 +1122,7 @@ img {
     background: #ffffff;
     color: var(--color-bg-dark);
     border-color: #ffffff;
+    transform: translateY(-2px);
 }
 
 /* Social Links in Streaming */
@@ -1168,13 +1190,17 @@ img {
     padding: var(--space-lg);
     background: var(--color-bg-alt);
     border: 1px solid var(--color-border);
+    border-radius: 20px;
     text-decoration: none;
     color: var(--color-text);
-    transition: all var(--duration-normal) var(--ease-smooth);
+    transition: all 0.4s var(--ease-smooth);
 }
 
 .social-tile:hover {
-    border-color: var(--color-text);
+    border-color: var(--color-border);
+    background: #ffffff;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
 }
 
 .tile-bg {
