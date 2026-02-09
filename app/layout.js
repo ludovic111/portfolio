@@ -34,7 +34,10 @@ export default function RootLayout({ children }) {
         <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
         <link rel="stylesheet" href="/css/styles.css" />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <script src="/js/script.js" defer></script>
+      </body>
     </html>
   );
 }

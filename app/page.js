@@ -1,6 +1,5 @@
 import fs from "node:fs";
 import path from "node:path";
-import Script from "next/script";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://ludovicmarie.vercel.app";
 const indexFilePath = path.join(process.cwd(), "content", "index.html");
@@ -67,10 +66,11 @@ export default function Home() {
   return (
     <>
       <div dangerouslySetInnerHTML={{ __html: bodyMarkup }} />
-      <Script id="ludovic-schema" type="application/ld+json" strategy="beforeInteractive">
-        {JSON.stringify(structuredData)}
-      </Script>
-      <Script src="/js/script.js" strategy="beforeInteractive" />
+      <script
+        id="ludovic-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
     </>
   );
 }
