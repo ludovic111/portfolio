@@ -211,14 +211,30 @@ const translations = {
     }
 };
 
+function getStoredLanguage() {
+    try {
+        return window.localStorage.getItem('portfolioLang');
+    } catch (_) {
+        return null;
+    }
+}
+
+function setStoredLanguage(lang) {
+    try {
+        window.localStorage.setItem('portfolioLang', lang);
+    } catch (_) {
+        // Ignore storage errors in strict privacy contexts.
+    }
+}
+
 // Current language state
-let currentLang = localStorage.getItem('portfolioLang') ||
-    (navigator.language.startsWith('fr') ? 'fr' : 'en');
+let currentLang = getStoredLanguage() ||
+    ((navigator.language || '').startsWith('fr') ? 'fr' : 'en');
 
 // Function to update all text content
 function setLanguage(lang) {
     currentLang = lang;
-    localStorage.setItem('portfolioLang', lang);
+    setStoredLanguage(lang);
     document.documentElement.lang = lang;
 
     // Update all elements with data-i18n attribute
@@ -273,12 +289,6 @@ function initPortfolioApp() {
     if (appBootstrapped) return;
     appBootstrapped = true;
 
-    // Initialize language system
-    initLanguage();
-    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const enableMotionEffects = !isTouchDevice && !prefersReducedMotion;
-
     // ============================================
     // LOADING SCREEN
     // ============================================
@@ -307,6 +317,17 @@ function initPortfolioApp() {
 
     // Safety net: never leave users blocked on the loading screen.
     window.setTimeout(finalizeLoading, 2600);
+
+    // Initialize language system
+    try {
+        initLanguage();
+    } catch (err) {
+        console.warn('Language initialization failed:', err);
+    }
+
+    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const enableMotionEffects = !isTouchDevice && !prefersReducedMotion;
 
     // ============================================
     // CUSTOM CURSOR
