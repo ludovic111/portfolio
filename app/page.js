@@ -26,7 +26,7 @@ const structuredData = {
       name: "Ludovic",
       url: `${siteUrl}/`,
       image: `${siteUrl}/assets/images/headshot.webp`,
-      description: "DJ, artiste rap et Chief AI Officer base a Geneve",
+      description: "DJ et Chief AI Officer base a Geneve",
       jobTitle: ["DJ", "Artiste", "Chief AI Officer"],
       worksFor: {
         "@type": "Organization",
@@ -36,21 +36,7 @@ const structuredData = {
       sameAs: [
         "https://www.instagram.com/lu4ovic",
         "https://x.com/lu4ovic",
-        "https://www.tiktok.com/@lu4ovic",
-        "https://open.spotify.com/artist/2G6ALmQ9WNsaqP0QsJFTJ8",
-        "https://music.apple.com/ch/artist/ludovic/1854313232"
-      ]
-    },
-    {
-      "@type": "MusicGroup",
-      "@id": `${siteUrl}/#artist`,
-      name: "Ludovic",
-      genre: ["Rap", "Hip-Hop"],
-      url: `${siteUrl}/`,
-      image: `${siteUrl}/assets/images/headshot.webp`,
-      sameAs: [
-        "https://open.spotify.com/artist/2G6ALmQ9WNsaqP0QsJFTJ8",
-        "https://music.apple.com/ch/artist/ludovic/1854313232"
+        "https://www.tiktok.com/@lu4ovic"
       ]
     },
     {

@@ -18,7 +18,7 @@ const translations = {
 
         // Hero
         heroEyebrow: "Portfolio 2026",
-        heroBio: "Étudiant au Collège Émilie-Gourd (maturité juin 2026), basé à Genève. Je navigue entre la musique, la tech et le streaming — passionné par l'intersection entre créativité et innovation.",
+        heroBio: "Étudiant au Collège Émilie-Gourd (maturité juin 2026), basé à Genève. Je navigue entre l'événementiel, la tech et le streaming — passionné par l'intersection entre créativité et innovation.",
         heroBtn: "Découvrir",
         badgeMaturite: "Maturité",
         scrollText: "Scroll",
@@ -46,11 +46,11 @@ const translations = {
         genreReggaeton: "Reggaeton",
 
         // Music Section
-        musicTitle: "Musique",
-        musicDesc: "Je fais du rap sous le nom <strong>Ludovic</strong>. Artiste rap basé en Suisse, je développe un style personnel mêlant influences américaines et européennes. Mes textes abordent des thèmes personnels avec une production moderne.",
-        musicDiscoTitle: "Discographie",
-        musicReleaseType: "Premier single",
-        musicListen: "Écouter",
+        musicTitle: "Création",
+        musicDesc: "Je développe des projets créatifs qui combinent direction artistique, storytelling et identité digitale.",
+        musicDiscoTitle: "Highlights",
+        musicReleaseType: "Projet",
+        musicListen: "Voir",
 
         // Tech Section
         techTitle: "Tech & AI",
@@ -91,7 +91,7 @@ const translations = {
         contactTitle: "Contact",
         contactIntro: "Pour toute demande professionnelle",
         contactType1: "Booking DJ",
-        contactType2: "Collaborations musicales",
+        contactType2: "Collaborations créatives",
         contactType3: "Projets tech & IA",
         contactType4: "Partenariats streaming",
         formName: "Nom",
@@ -119,7 +119,7 @@ const translations = {
 
         // Hero
         heroEyebrow: "Portfolio 2026",
-        heroBio: "Student at Collège Émilie-Gourd (graduating June 2026), based in Geneva. I navigate between music, tech and streaming — passionate about the intersection of creativity and innovation.",
+        heroBio: "Student at Collège Émilie-Gourd (graduating June 2026), based in Geneva. I navigate between events, tech and streaming — passionate about the intersection of creativity and innovation.",
         heroBtn: "Discover",
         badgeMaturite: "Graduating",
         scrollText: "Scroll",
@@ -147,11 +147,11 @@ const translations = {
         genreReggaeton: "Reggaeton",
 
         // Music Section
-        musicTitle: "Music",
-        musicDesc: "I make rap under the name <strong>Ludovic</strong>. A Swiss-based rap artist, I'm developing a personal style blending American and European influences. My lyrics address personal themes with modern production.",
-        musicDiscoTitle: "Discography",
-        musicReleaseType: "First single",
-        musicListen: "Listen",
+        musicTitle: "Creation",
+        musicDesc: "I build creative projects blending artistic direction, storytelling, and digital identity.",
+        musicDiscoTitle: "Highlights",
+        musicReleaseType: "Project",
+        musicListen: "View",
 
         // Tech Section
         techTitle: "Tech & AI",
@@ -192,7 +192,7 @@ const translations = {
         contactTitle: "Contact",
         contactIntro: "For any professional inquiry",
         contactType1: "DJ Booking",
-        contactType2: "Music collaborations",
+        contactType2: "Creative collaborations",
         contactType3: "Tech & AI projects",
         contactType4: "Streaming partnerships",
         formName: "Name",
