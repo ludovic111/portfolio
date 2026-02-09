@@ -25,6 +25,8 @@ npm-debug.log*
 # Build output (if applicable)
 dist/
 build/
+.next/
+out/
 
 # Logs
 *.log
