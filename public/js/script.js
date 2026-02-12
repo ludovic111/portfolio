@@ -1,6 +1,6 @@
 /**
  * LUDOVIC — Portfolio Interactions
- * Simplified for National Design Studio aesthetic
+ * Apple Product Page aesthetic
  */
 
 // ============================================
@@ -369,7 +369,7 @@ function initPortfolioApp() {
 
             e.preventDefault();
 
-            const offsetTop = target.getBoundingClientRect().top + window.scrollY - 100;
+            const offsetTop = target.getBoundingClientRect().top + window.scrollY - 60;
             window.scrollTo({
                 top: Math.max(offsetTop, 0),
                 behavior: prefersReducedMotion ? 'auto' : 'smooth'
@@ -382,32 +382,66 @@ function initPortfolioApp() {
     });
 
     // ============================================
-    // SCROLL REVEAL (Simple opacity fade)
+    // SCROLL REVEAL (Apple-style staggered)
     // ============================================
     function initAnimations() {
+        if (prefersReducedMotion) return;
+
         const revealElements = document.querySelectorAll(
-            '.section-title, .section-desc, .section-visual, .tech-card, .social-tile, .social-btn, .subsection, .equipment-section'
+            '.section-number, .section-title, .section-desc, .section-visual, ' +
+            '.tech-card, .social-tile, .social-btn, .subsection, ' +
+            '.equipment-section, .tech-header, .tech-intro, .stack-section, ' +
+            '.philosophy, .contact-content, .social-intro, .activities, .social-links'
         );
 
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    const siblings = entry.target.parentElement.children;
+                    const index = Array.from(siblings).indexOf(entry.target);
+                    const delay = Math.min(index * 80, 400);
+                    entry.target.style.transitionDelay = delay + 'ms';
+                    entry.target.classList.add('revealed');
                     revealObserver.unobserve(entry.target);
                 }
             });
         }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            threshold: 0.15,
+            rootMargin: '0px 0px -80px 0px'
         });
 
         revealElements.forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            el.classList.add('reveal-on-scroll');
             revealObserver.observe(el);
         });
+
+        // Hero parallax
+        initHeroParallax();
+    }
+
+    function initHeroParallax() {
+        const heroTitle = document.querySelector('.hero-title');
+        const heroContent = document.querySelector('.hero-content');
+        if (!heroTitle || prefersReducedMotion) return;
+
+        let heroTicking = false;
+        window.addEventListener('scroll', () => {
+            if (!heroTicking) {
+                requestAnimationFrame(() => {
+                    const scrollY = window.scrollY;
+                    const heroHeight = window.innerHeight;
+                    if (scrollY < heroHeight) {
+                        const progress = scrollY / heroHeight;
+                        heroTitle.style.transform = 'translateY(' + (progress * 80) + 'px)';
+                        if (heroContent) {
+                            heroContent.style.opacity = Math.max(1 - (progress * 1.5), 0);
+                        }
+                    }
+                    heroTicking = false;
+                });
+                heroTicking = true;
+            }
+        }, { passive: true });
     }
 
     // ============================================
@@ -420,7 +454,7 @@ function initPortfolioApp() {
         if (!ticking) {
             requestAnimationFrame(() => {
                 if (nav) {
-                    nav.classList.toggle('scrolled', window.scrollY > 24);
+                    nav.classList.toggle('scrolled', window.scrollY > 10);
                 }
                 ticking = false;
             });
